@@ -1,0 +1,1 @@
+Dentro do zip tetris há o executável main.exe. Basta abri-lo para acessar o jogo.

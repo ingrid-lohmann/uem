@@ -1,0 +1,66 @@
+@use "../../variables/index" as v;
+
+.container {
+  display: flex;
+  height: 100vh;
+  column-gap: 122px;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  width: 23%;
+}
+
+.content {
+  display: flex;
+  row-gap: v.$lXS;
+  flex-direction: column;
+}
+
+.text {
+  display: flex;
+  row-gap: v.$sXXS;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 800;
+  font-size: v.$headingExtraLarge;
+}
+
+.offline-title {
+  font-weight: 800;
+  font-size: v.$headingLarge;
+}
+
+.subtitle {
+  font-weight: 700;
+  color: v.$burntSienna;
+  font-size: v.$headingSmall;
+}
+
+.description {
+  font-size: v.$caption;
+}
+
+.button {
+  height: 43px;
+  width: 148px;
+  color: white;
+  font-weight: 700;
+  border-radius: 50px;
+  font-size: v.$caption;
+  border-width: v.$widthNone;
+  background-color: v.$jungleGreen;
+
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    transition: 0.7s;
+  }
+
+  &:active {
+    background-color: v.$verdigris;
+  }
+}

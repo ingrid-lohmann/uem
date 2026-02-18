@@ -1,0 +1,44 @@
+.input-container {
+  position: relative;
+}
+
+input {
+  border: 0;
+  outline: none;
+  box-sizing: border-box;
+  transition: 0.2s ease-in-out;
+  border-bottom: 2px solid #264653;
+}
+input:valid, input:focus {
+  border-bottom: 2px solid #103f72;
+}
+
+label {
+  top: 0;
+  left: 0;
+  right: 0;
+  cursor: text;
+  display: flex;
+  position: absolute;
+  font-size: 1.125rem;
+  align-items: center;
+  box-sizing: border-box;
+  color: #264653;
+  transition: 0.2s ease-in-out;
+}
+
+input,
+label {
+  width: 100%;
+  height: 3rem;
+  font-size: 1.125rem;
+}
+
+input:valid + label,
+input:focus + label {
+  top: -30px;
+  font-weight: 300;
+  font-size: 0.9rem;
+  color: #103f72;
+  pointer-events: none;
+}/*# sourceMappingURL=input.css.map */

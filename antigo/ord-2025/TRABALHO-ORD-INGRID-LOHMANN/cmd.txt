@@ -1,0 +1,23 @@
+# Ajustar/Reconstruir o filmes.dat a partir do original
+python programa.py -a
+
+# Executar um arquivo de operações (busca, inserção, remoção)
+python programa.py -e operacoes.txt
+
+# Imprimir a Lista de Espaços Disponíveis (LED)
+python programa.py -p
+
+# Compactar o arquivo de dados
+python programa.py -c
+
+# Instalar pacotes de teste
+pip install pytest pytest-cov
+
+# Rodar testes (modo simples)
+pytest
+
+# Rodar testes (modo detalhado)
+pytest -v
+
+# Rodar testes com relatório de cobertura
+pytest --cov=programa --cov-report term-missing

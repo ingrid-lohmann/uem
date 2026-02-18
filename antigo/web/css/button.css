@@ -1,0 +1,20 @@
+button {
+  font-family: "Londrina";
+  color: #f6f9f9;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  letter-spacing: 0.1em;
+  border-radius: 12px;
+  background-color: #48c1ad;
+}
+button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+button:disabled {
+  cursor: default;
+  opacity: 1;
+  color: white;
+  background-color: #dcd6cd;
+}/*# sourceMappingURL=button.css.map */

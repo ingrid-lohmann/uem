@@ -1,0 +1,42 @@
+Configuração do Teste A/B para Registro de Presença
+Você está propondo um teste A/B para avaliar a eficácia de dois métodos de registro de presença:
+
+Teste A: Leitura de QR Code (Scanner)
+
+Página: A página onde o usuário utiliza a câmera do dispositivo para ler um QR Code.
+Abordagem: O aluno apresenta um QR Code (em seu celular, impresso, etc.), e o responsável pela lista o escaneia com o aplicativo.
+Objetivo: Avaliar a velocidade, precisão e facilidade de uso do método de escaneamento.
+Teste B: Seleção em Lista (Checklist)
+
+Página: A página que exibe uma lista de alunos onde o usuário deve marcar manualmente os presentes.
+Abordagem: O responsável pela lista visualiza os nomes dos alunos e seleciona aqueles que estão presentes (ex: usando checkboxes ou botões de alternância).
+Objetivo: Avaliar a clareza, a taxa de erros e a usabilidade da seleção manual em uma lista.
+Página de Exemplos de QR Code:
+
+Uma página auxiliar para gerar ou exibir QR Codes de teste, facilitando a validação e o uso da página do Teste A.
+Por Que Ambos os Testes Devem Ser Realizados no Celular?
+A recomendação para que tanto o Teste A (Leitura de QR Code) quanto o Teste B (Seleção em Lista) sejam realizados em dispositivos móveis (celulares) é crucial para a validade e a relevância dos seus resultados.
+
+Aqui estão os principais motivos:
+
+Câmera Essencial para o Teste A:
+
+A funcionalidade principal do Teste A (leitura de QR Code) depende intrinsecamente da câmera do dispositivo. A vasta maioria dos computadores desktop não possui uma câmera integrada ou uma webcam de fácil acesso que seja prática para o escaneamento de QR Codes em um cenário de registro de presença. O celular, com sua câmera sempre disponível e portátil, é o ambiente natural para esta tarefa.
+Contexto de Uso Real (Portabilidade):
+
+Em um cenário real de registro de presença (seja em sala de aula, evento, reunião), o responsável pela lista provavelmente estará em movimento ou precisará de um dispositivo portátil para realizar a tarefa.
+Os celulares oferecem a portabilidade necessária para que o registro possa ser feito em qualquer local do evento, sem a necessidade de um computador estacionário.
+Experiência do Usuário (Responsividade e Toque):
+
+Ambas as interfaces (seja o scanner de QR Code ou a lista de seleção) são projetadas para serem responsivas e otimizadas para interações por toque.
+Testar no celular garante que os elementos de interface (botões, campos de entrada, áreas de toque) sejam dimensionados corretamente e respondam de forma intuitiva aos gestos de toque, simulando a experiência que o usuário final terá.
+Desempenho e Compatibilidade:
+
+A performance da câmera em navegadores móveis e a compatibilidade das APIs (como getUserMedia para acesso à câmera) podem variar em comparação com navegadores desktop. Testar no celular ajuda a identificar quaisquer problemas de desempenho ou compatibilidade específicos do ambiente móvel.
+Simulação de Condições Reais:
+
+Condições de iluminação, distância de leitura e ângulos de câmera são variáveis que afetam diretamente a leitura de QR Codes. Estas condições são mais realistas em um ambiente de celular do que em um desktop com webcam.
+Para o Teste B, a facilidade de rolar listas longas, marcar itens e navegar em telas menores é fundamental e só pode ser avaliada com precisão em um dispositivo móvel.
+Conclusão:
+
+Ao realizar ambos os testes A e B em celulares, você não apenas garante que o Teste A seja funcional, mas também que ambos os cenários sejam avaliados sob as condições de uso mais realistas e relevantes para o seu público-alvo, fornecendo dados mais precisos para sua decisão.

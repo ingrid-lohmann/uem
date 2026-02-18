@@ -1,0 +1,23 @@
+{
+  "folders": [
+    {
+      "path": "teste-ab"
+    },
+    {
+      "path": "../laboratório-eng-de-software/backend-rb"
+    }
+  ],
+  
+  "settings": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "workbench.colorTheme": "Astrolize",
+    "eslint.validate": [
+      "javascript",
+      "javascriptreact",
+      "typescript",
+      "typescriptreact"
+    ]
+  }
+}

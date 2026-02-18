@@ -1,0 +1,44 @@
+@use "../../variables/index" as v;
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: v.$sMedium;
+  justify-content: center;
+  background-color: v.$blanchedAlmond;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: fit-content;
+  flex-direction: column;
+  padding: 50px 77px;
+  background-color: white;
+  border-radius: v.$radiusLarge;
+
+  &__title {
+    font-weight: 900;
+    color: v.$japaneseIndigo;
+    font-size: v.$headingLarge;
+  }
+
+  &__form {
+    display: flex;
+    row-gap: 30px;
+    flex-direction: column;
+  }
+
+  &__forgot-password {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+a {
+  font-weight: 300;
+  color: v.$halloweenOrange;
+}

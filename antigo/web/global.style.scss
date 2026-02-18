@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "Londrina";
+  font-weight: 100;
+  src: url(../fonts/LondrinaSolid-Thin.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Londrina";
+  font-weight: 300;
+  src: url(../fonts/LondrinaSolid-Light.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Londrina";
+  font-weight: 400;
+  src: url(../fonts/LondrinaSolid-Regular.woff2) format("woff2");
+}
+
+@font-face {
+  font-family: "Londrina";
+  font-weight: 900;
+  src: url(../fonts/LondrinaSolid-Black.woff2) format("woff2");
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+  font-family: 400;
+  font-family: "Londrina";
+  background-color: rgb(248, 247, 247);
+}
+
+a {
+  &:hover {
+    cursor: pointer;
+  }
+}
