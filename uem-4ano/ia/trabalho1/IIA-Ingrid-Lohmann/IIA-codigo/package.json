@@ -1,0 +1,22 @@
+{
+  "name": "trabalho-1-ia",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16 <=22"
+  },
+  "scripts": {
+    "start": "ts-node ./src/main.ts"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.9",
+    "@types/node": "^24.5.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "inquirer": "^12.9.6"
+  }
+}

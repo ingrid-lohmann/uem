@@ -1,0 +1,28 @@
+✔ Escolha a instância de teste: Fácil
+✔ Escolha a heurística para resolver o Sudoku: Grau (Heurística de Grau)
+✔ Deseja usar o pré-processamento AC-3? Yes
+
+🚀 Iniciando resolvedor...
+
+⚙️ Rodando AC-3 para pré-processamento...
+  ❌ [AC-3] Removendo valor 2 do domínio de V2 (conflito com V1)
+  ❌ [AC-3] Removendo valor 3 do domínio de V2 (conflito com V4)
+  ❌ [AC-3] Removendo valor 2 do domínio de V3 (conflito com V1)
+  ❌ [AC-3] Removendo valor 3 do domínio de V3 (conflito com V4)
+  ❌ [AC-3] Removendo valor 2 do domínio de V5 (conflito com V1)
+
+-----------------------------------------
+✅ Solução Encontrada:
+{
+  "V1": 2,
+  "V2": 1,
+  "V3": 4,
+  "V4": 3,
+  "V5": 3
+}
+
+📊 Métricas de Desempenho:
+   ⏱️  Tempo de Execução: 3.135 ms
+   🪢  Nós Visitados: 6
+   ↩️  Backtracks: 0
+-----------------------------------------

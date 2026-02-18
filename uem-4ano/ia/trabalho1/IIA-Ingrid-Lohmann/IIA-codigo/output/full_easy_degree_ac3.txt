@@ -1,0 +1,82 @@
+✔ Modo do Problema: Completo (4x4)
+✔ Escolha a instância de teste: undefined
+✔ Escolha a heurística para resolver o Sudoku: Grau (Heurística de Grau)
+✔ Deseja usar o pré-processamento AC-3? Yes
+
+🚀 Iniciando resolvedor...
+
+⚙️ Rodando AC-3 para pré-processamento...
+  ❌ [AC-3] Removendo valor 1 do domínio de C12 (conflito com C11)
+  ❌ [AC-3] Removendo valor 4 do domínio de C12 (conflito com C32)
+  ❌ [AC-3] Removendo valor 1 do domínio de C13 (conflito com C11)
+  ❌ [AC-3] Removendo valor 3 do domínio de C13 (conflito com C24)
+  ❌ [AC-3] Removendo valor 2 do domínio de C13 (conflito com C43)
+  ❌ [AC-3] Removendo valor 1 do domínio de C14 (conflito com C11)
+  ❌ [AC-3] Removendo valor 4 do domínio de C14 (conflito com C13)
+  ❌ [AC-3] Removendo valor 3 do domínio de C14 (conflito com C24)
+  ❌ [AC-3] Removendo valor 1 do domínio de C21 (conflito com C11)
+  ❌ [AC-3] Removendo valor 3 do domínio de C21 (conflito com C24)
+  ❌ [AC-3] Removendo valor 1 do domínio de C22 (conflito com C11)
+  ❌ [AC-3] Removendo valor 3 do domínio de C22 (conflito com C24)
+  ❌ [AC-3] Removendo valor 4 do domínio de C22 (conflito com C32)
+  ❌ [AC-3] Removendo valor 4 do domínio de C23 (conflito com C13)
+  ❌ [AC-3] Removendo valor 2 do domínio de C23 (conflito com C14)
+  ❌ [AC-3] Removendo valor 3 do domínio de C23 (conflito com C24)
+  ❌ [AC-3] Removendo valor 1 do domínio de C31 (conflito com C11)
+  ❌ [AC-3] Removendo valor 4 do domínio de C31 (conflito com C32)
+  ❌ [AC-3] Removendo valor 4 do domínio de C33 (conflito com C13)
+  ❌ [AC-3] Removendo valor 1 do domínio de C33 (conflito com C23)
+  ❌ [AC-3] Removendo valor 2 do domínio de C33 (conflito com C43)
+  ❌ [AC-3] Removendo valor 2 do domínio de C34 (conflito com C14)
+  ❌ [AC-3] Removendo valor 3 do domínio de C34 (conflito com C24)
+  ❌ [AC-3] Removendo valor 4 do domínio de C34 (conflito com C32)
+  ❌ [AC-3] Removendo valor 1 do domínio de C41 (conflito com C11)
+  ❌ [AC-3] Removendo valor 4 do domínio de C41 (conflito com C32)
+  ❌ [AC-3] Removendo valor 2 do domínio de C41 (conflito com C43)
+  ❌ [AC-3] Removendo valor 2 do domínio de C42 (conflito com C22)
+  ❌ [AC-3] Removendo valor 4 do domínio de C42 (conflito com C32)
+  ❌ [AC-3] Removendo valor 3 do domínio de C42 (conflito com C41)
+  ❌ [AC-3] Removendo valor 2 do domínio de C44 (conflito com C14)
+  ❌ [AC-3] Removendo valor 3 do domínio de C44 (conflito com C24)
+  ❌ [AC-3] Removendo valor 1 do domínio de C44 (conflito com C34)
+  ❌ [AC-3] Removendo valor 2 do domínio de C12 (conflito com C14)
+  ❌ [AC-3] Removendo valor 2 do domínio de C21 (conflito com C22)
+  ❌ [AC-3] Removendo valor 3 do domínio de C31 (conflito com C33)
+
+-----------------------------------------
+✅ Solução Encontrada:
+{
+  "C11": 1,
+  "C23": 1,
+  "C32": 4,
+  "C44": 4,
+  "C12": 3,
+  "C24": 3,
+  "C31": 2,
+  "C43": 2,
+  "C13": 4,
+  "C21": 4,
+  "C34": 1,
+  "C42": 1,
+  "C14": 2,
+  "C22": 2,
+  "C33": 3,
+  "C41": 3
+}
+
+   --- Tabuleiro Final ---
+   +---+---+---+---+
+   | 1 | 3 | 4 | 2 |
+   +---+---+---+---+
+   | 4 | 2 | 1 | 3 |
+   +---+---+---+---+
+   | 2 | 4 | 3 | 1 |
+   +---+---+---+---+
+   | 3 | 1 | 2 | 4 |
+   +---+---+---+---+
+
+📊 Métricas de Desempenho:
+   ⏱️  Tempo de Execução: 8.054 ms
+   🪢  Nós Visitados: 17
+   ↩️  Backtracks: 0
+-----------------------------------------

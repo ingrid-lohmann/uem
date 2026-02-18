@@ -1,0 +1,26 @@
+✔ Escolha a instância de teste: Médio
+✔ Escolha a heurística para resolver o Sudoku: MRV (Valores Mínimos Restantes)
+✔ Deseja usar o pré-processamento AC-3? Yes
+
+🚀 Iniciando resolvedor...
+
+⚙️ Rodando AC-3 para pré-processamento...
+  ❌ [AC-3] Removendo valor 1 do domínio de V1 (conflito com V2)
+  ❌ [AC-3] Removendo valor 1 do domínio de V3 (conflito com V2)
+  ❌ [AC-3] Removendo valor 1 do domínio de V4 (conflito com V2)
+
+-----------------------------------------
+✅ Solução Encontrada:
+{
+  "V2": 1,
+  "V5": 3,
+  "V1": 2,
+  "V3": 3,
+  "V4": 4
+}
+
+📊 Métricas de Desempenho:
+   ⏱️  Tempo de Execução: 3.785 ms
+   🪢  Nós Visitados: 6
+   ↩️  Backtracks: 0
+-----------------------------------------

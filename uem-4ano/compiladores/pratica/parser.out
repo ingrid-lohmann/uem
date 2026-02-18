@@ -1,0 +1,579 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> INICIAR CALCULADIN DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO
+Rule 2     programa -> INICIAR error DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO
+Rule 3     lista_comandos -> lista_comandos comando PONTO_VIRGULA
+Rule 4     lista_comandos -> empty
+Rule 5     lista_comandos -> lista_comandos error PONTO_VIRGULA
+Rule 6     comando -> chamada_funcao
+Rule 7     comando -> atribuicao
+Rule 8     chamada_funcao -> INPUT LPAREN ID RPAREN
+Rule 9     chamada_funcao -> OUTPUT LPAREN ID RPAREN
+Rule 10    atribuicao -> ID IGUAL expr
+Rule 11    expr -> expr MAIS termo
+Rule 12    expr -> expr MENOS termo
+Rule 13    expr -> termo
+Rule 14    termo -> termo VEZES fator
+Rule 15    termo -> termo DIVIDE fator
+Rule 16    termo -> fator
+Rule 17    fator -> NUMERO
+Rule 18    fator -> ID
+Rule 19    fator -> LPAREN expr RPAREN
+Rule 20    empty -> <empty>
+
+Terminals, with rules where they appear
+
+CALCULADIN           : 1 1 2
+DIVIDE               : 15
+DOIS_PONTOS          : 1 2
+FINALIZAR            : 1 2
+ID                   : 8 9 10 18
+IGUAL                : 10
+INICIAR              : 1 2
+INPUT                : 8
+LPAREN               : 8 9 19
+MAIS                 : 11
+MENOS                : 12
+NUMERO               : 17
+OUTPUT               : 9
+PONTO                : 1 2
+PONTO_VIRGULA        : 3 5
+RPAREN               : 8 9 19
+VEZES                : 14
+error                : 2 5
+
+Nonterminals, with rules where they appear
+
+atribuicao           : 7
+chamada_funcao       : 6
+comando              : 3
+empty                : 4
+expr                 : 10 11 12 19
+fator                : 14 15 16
+lista_comandos       : 1 2 3 5
+programa             : 0
+termo                : 11 12 13 14 15
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . INICIAR CALCULADIN DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO
+    (2) programa -> . INICIAR error DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO
+
+    INICIAR         shift and go to state 2
+
+    programa                       shift and go to state 1
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> INICIAR . CALCULADIN DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO
+    (2) programa -> INICIAR . error DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO
+
+    CALCULADIN      shift and go to state 3
+    error           shift and go to state 4
+
+
+state 3
+
+    (1) programa -> INICIAR CALCULADIN . DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO
+
+    DOIS_PONTOS     shift and go to state 5
+
+
+state 4
+
+    (2) programa -> INICIAR error . DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO
+
+    DOIS_PONTOS     shift and go to state 6
+
+
+state 5
+
+    (1) programa -> INICIAR CALCULADIN DOIS_PONTOS . lista_comandos FINALIZAR CALCULADIN PONTO
+    (3) lista_comandos -> . lista_comandos comando PONTO_VIRGULA
+    (4) lista_comandos -> . empty
+    (5) lista_comandos -> . lista_comandos error PONTO_VIRGULA
+    (20) empty -> .
+
+    FINALIZAR       reduce using rule 20 (empty -> .)
+    error           reduce using rule 20 (empty -> .)
+    INPUT           reduce using rule 20 (empty -> .)
+    OUTPUT          reduce using rule 20 (empty -> .)
+    ID              reduce using rule 20 (empty -> .)
+
+    lista_comandos                 shift and go to state 7
+    empty                          shift and go to state 8
+
+state 6
+
+    (2) programa -> INICIAR error DOIS_PONTOS . lista_comandos FINALIZAR CALCULADIN PONTO
+    (3) lista_comandos -> . lista_comandos comando PONTO_VIRGULA
+    (4) lista_comandos -> . empty
+    (5) lista_comandos -> . lista_comandos error PONTO_VIRGULA
+    (20) empty -> .
+
+    FINALIZAR       reduce using rule 20 (empty -> .)
+    error           reduce using rule 20 (empty -> .)
+    INPUT           reduce using rule 20 (empty -> .)
+    OUTPUT          reduce using rule 20 (empty -> .)
+    ID              reduce using rule 20 (empty -> .)
+
+    lista_comandos                 shift and go to state 9
+    empty                          shift and go to state 8
+
+state 7
+
+    (1) programa -> INICIAR CALCULADIN DOIS_PONTOS lista_comandos . FINALIZAR CALCULADIN PONTO
+    (3) lista_comandos -> lista_comandos . comando PONTO_VIRGULA
+    (5) lista_comandos -> lista_comandos . error PONTO_VIRGULA
+    (6) comando -> . chamada_funcao
+    (7) comando -> . atribuicao
+    (8) chamada_funcao -> . INPUT LPAREN ID RPAREN
+    (9) chamada_funcao -> . OUTPUT LPAREN ID RPAREN
+    (10) atribuicao -> . ID IGUAL expr
+
+    FINALIZAR       shift and go to state 10
+    error           shift and go to state 12
+    INPUT           shift and go to state 15
+    OUTPUT          shift and go to state 17
+    ID              shift and go to state 16
+
+    comando                        shift and go to state 11
+    chamada_funcao                 shift and go to state 13
+    atribuicao                     shift and go to state 14
+
+state 8
+
+    (4) lista_comandos -> empty .
+
+    FINALIZAR       reduce using rule 4 (lista_comandos -> empty .)
+    error           reduce using rule 4 (lista_comandos -> empty .)
+    INPUT           reduce using rule 4 (lista_comandos -> empty .)
+    OUTPUT          reduce using rule 4 (lista_comandos -> empty .)
+    ID              reduce using rule 4 (lista_comandos -> empty .)
+
+
+state 9
+
+    (2) programa -> INICIAR error DOIS_PONTOS lista_comandos . FINALIZAR CALCULADIN PONTO
+    (3) lista_comandos -> lista_comandos . comando PONTO_VIRGULA
+    (5) lista_comandos -> lista_comandos . error PONTO_VIRGULA
+    (6) comando -> . chamada_funcao
+    (7) comando -> . atribuicao
+    (8) chamada_funcao -> . INPUT LPAREN ID RPAREN
+    (9) chamada_funcao -> . OUTPUT LPAREN ID RPAREN
+    (10) atribuicao -> . ID IGUAL expr
+
+    FINALIZAR       shift and go to state 18
+    error           shift and go to state 12
+    INPUT           shift and go to state 15
+    OUTPUT          shift and go to state 17
+    ID              shift and go to state 16
+
+    comando                        shift and go to state 11
+    chamada_funcao                 shift and go to state 13
+    atribuicao                     shift and go to state 14
+
+state 10
+
+    (1) programa -> INICIAR CALCULADIN DOIS_PONTOS lista_comandos FINALIZAR . CALCULADIN PONTO
+
+    CALCULADIN      shift and go to state 19
+
+
+state 11
+
+    (3) lista_comandos -> lista_comandos comando . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 20
+
+
+state 12
+
+    (5) lista_comandos -> lista_comandos error . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 21
+
+
+state 13
+
+    (6) comando -> chamada_funcao .
+
+    PONTO_VIRGULA   reduce using rule 6 (comando -> chamada_funcao .)
+
+
+state 14
+
+    (7) comando -> atribuicao .
+
+    PONTO_VIRGULA   reduce using rule 7 (comando -> atribuicao .)
+
+
+state 15
+
+    (8) chamada_funcao -> INPUT . LPAREN ID RPAREN
+
+    LPAREN          shift and go to state 22
+
+
+state 16
+
+    (10) atribuicao -> ID . IGUAL expr
+
+    IGUAL           shift and go to state 23
+
+
+state 17
+
+    (9) chamada_funcao -> OUTPUT . LPAREN ID RPAREN
+
+    LPAREN          shift and go to state 24
+
+
+state 18
+
+    (2) programa -> INICIAR error DOIS_PONTOS lista_comandos FINALIZAR . CALCULADIN PONTO
+
+    CALCULADIN      shift and go to state 25
+
+
+state 19
+
+    (1) programa -> INICIAR CALCULADIN DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN . PONTO
+
+    PONTO           shift and go to state 26
+
+
+state 20
+
+    (3) lista_comandos -> lista_comandos comando PONTO_VIRGULA .
+
+    FINALIZAR       reduce using rule 3 (lista_comandos -> lista_comandos comando PONTO_VIRGULA .)
+    error           reduce using rule 3 (lista_comandos -> lista_comandos comando PONTO_VIRGULA .)
+    INPUT           reduce using rule 3 (lista_comandos -> lista_comandos comando PONTO_VIRGULA .)
+    OUTPUT          reduce using rule 3 (lista_comandos -> lista_comandos comando PONTO_VIRGULA .)
+    ID              reduce using rule 3 (lista_comandos -> lista_comandos comando PONTO_VIRGULA .)
+
+
+state 21
+
+    (5) lista_comandos -> lista_comandos error PONTO_VIRGULA .
+
+    FINALIZAR       reduce using rule 5 (lista_comandos -> lista_comandos error PONTO_VIRGULA .)
+    error           reduce using rule 5 (lista_comandos -> lista_comandos error PONTO_VIRGULA .)
+    INPUT           reduce using rule 5 (lista_comandos -> lista_comandos error PONTO_VIRGULA .)
+    OUTPUT          reduce using rule 5 (lista_comandos -> lista_comandos error PONTO_VIRGULA .)
+    ID              reduce using rule 5 (lista_comandos -> lista_comandos error PONTO_VIRGULA .)
+
+
+state 22
+
+    (8) chamada_funcao -> INPUT LPAREN . ID RPAREN
+
+    ID              shift and go to state 27
+
+
+state 23
+
+    (10) atribuicao -> ID IGUAL . expr
+    (11) expr -> . expr MAIS termo
+    (12) expr -> . expr MENOS termo
+    (13) expr -> . termo
+    (14) termo -> . termo VEZES fator
+    (15) termo -> . termo DIVIDE fator
+    (16) termo -> . fator
+    (17) fator -> . NUMERO
+    (18) fator -> . ID
+    (19) fator -> . LPAREN expr RPAREN
+
+    NUMERO          shift and go to state 32
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 33
+
+    expr                           shift and go to state 29
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+
+state 24
+
+    (9) chamada_funcao -> OUTPUT LPAREN . ID RPAREN
+
+    ID              shift and go to state 34
+
+
+state 25
+
+    (2) programa -> INICIAR error DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN . PONTO
+
+    PONTO           shift and go to state 35
+
+
+state 26
+
+    (1) programa -> INICIAR CALCULADIN DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO .
+
+    $end            reduce using rule 1 (programa -> INICIAR CALCULADIN DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO .)
+
+
+state 27
+
+    (8) chamada_funcao -> INPUT LPAREN ID . RPAREN
+
+    RPAREN          shift and go to state 36
+
+
+state 28
+
+    (18) fator -> ID .
+
+    VEZES           reduce using rule 18 (fator -> ID .)
+    DIVIDE          reduce using rule 18 (fator -> ID .)
+    MAIS            reduce using rule 18 (fator -> ID .)
+    MENOS           reduce using rule 18 (fator -> ID .)
+    PONTO_VIRGULA   reduce using rule 18 (fator -> ID .)
+    RPAREN          reduce using rule 18 (fator -> ID .)
+
+
+state 29
+
+    (10) atribuicao -> ID IGUAL expr .
+    (11) expr -> expr . MAIS termo
+    (12) expr -> expr . MENOS termo
+
+    PONTO_VIRGULA   reduce using rule 10 (atribuicao -> ID IGUAL expr .)
+    MAIS            shift and go to state 37
+    MENOS           shift and go to state 38
+
+
+state 30
+
+    (13) expr -> termo .
+    (14) termo -> termo . VEZES fator
+    (15) termo -> termo . DIVIDE fator
+
+    MAIS            reduce using rule 13 (expr -> termo .)
+    MENOS           reduce using rule 13 (expr -> termo .)
+    PONTO_VIRGULA   reduce using rule 13 (expr -> termo .)
+    RPAREN          reduce using rule 13 (expr -> termo .)
+    VEZES           shift and go to state 39
+    DIVIDE          shift and go to state 40
+
+
+state 31
+
+    (16) termo -> fator .
+
+    VEZES           reduce using rule 16 (termo -> fator .)
+    DIVIDE          reduce using rule 16 (termo -> fator .)
+    MAIS            reduce using rule 16 (termo -> fator .)
+    MENOS           reduce using rule 16 (termo -> fator .)
+    PONTO_VIRGULA   reduce using rule 16 (termo -> fator .)
+    RPAREN          reduce using rule 16 (termo -> fator .)
+
+
+state 32
+
+    (17) fator -> NUMERO .
+
+    VEZES           reduce using rule 17 (fator -> NUMERO .)
+    DIVIDE          reduce using rule 17 (fator -> NUMERO .)
+    MAIS            reduce using rule 17 (fator -> NUMERO .)
+    MENOS           reduce using rule 17 (fator -> NUMERO .)
+    PONTO_VIRGULA   reduce using rule 17 (fator -> NUMERO .)
+    RPAREN          reduce using rule 17 (fator -> NUMERO .)
+
+
+state 33
+
+    (19) fator -> LPAREN . expr RPAREN
+    (11) expr -> . expr MAIS termo
+    (12) expr -> . expr MENOS termo
+    (13) expr -> . termo
+    (14) termo -> . termo VEZES fator
+    (15) termo -> . termo DIVIDE fator
+    (16) termo -> . fator
+    (17) fator -> . NUMERO
+    (18) fator -> . ID
+    (19) fator -> . LPAREN expr RPAREN
+
+    NUMERO          shift and go to state 32
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 33
+
+    expr                           shift and go to state 41
+    termo                          shift and go to state 30
+    fator                          shift and go to state 31
+
+state 34
+
+    (9) chamada_funcao -> OUTPUT LPAREN ID . RPAREN
+
+    RPAREN          shift and go to state 42
+
+
+state 35
+
+    (2) programa -> INICIAR error DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO .
+
+    $end            reduce using rule 2 (programa -> INICIAR error DOIS_PONTOS lista_comandos FINALIZAR CALCULADIN PONTO .)
+
+
+state 36
+
+    (8) chamada_funcao -> INPUT LPAREN ID RPAREN .
+
+    PONTO_VIRGULA   reduce using rule 8 (chamada_funcao -> INPUT LPAREN ID RPAREN .)
+
+
+state 37
+
+    (11) expr -> expr MAIS . termo
+    (14) termo -> . termo VEZES fator
+    (15) termo -> . termo DIVIDE fator
+    (16) termo -> . fator
+    (17) fator -> . NUMERO
+    (18) fator -> . ID
+    (19) fator -> . LPAREN expr RPAREN
+
+    NUMERO          shift and go to state 32
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 33
+
+    termo                          shift and go to state 43
+    fator                          shift and go to state 31
+
+state 38
+
+    (12) expr -> expr MENOS . termo
+    (14) termo -> . termo VEZES fator
+    (15) termo -> . termo DIVIDE fator
+    (16) termo -> . fator
+    (17) fator -> . NUMERO
+    (18) fator -> . ID
+    (19) fator -> . LPAREN expr RPAREN
+
+    NUMERO          shift and go to state 32
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 33
+
+    termo                          shift and go to state 44
+    fator                          shift and go to state 31
+
+state 39
+
+    (14) termo -> termo VEZES . fator
+    (17) fator -> . NUMERO
+    (18) fator -> . ID
+    (19) fator -> . LPAREN expr RPAREN
+
+    NUMERO          shift and go to state 32
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 33
+
+    fator                          shift and go to state 45
+
+state 40
+
+    (15) termo -> termo DIVIDE . fator
+    (17) fator -> . NUMERO
+    (18) fator -> . ID
+    (19) fator -> . LPAREN expr RPAREN
+
+    NUMERO          shift and go to state 32
+    ID              shift and go to state 28
+    LPAREN          shift and go to state 33
+
+    fator                          shift and go to state 46
+
+state 41
+
+    (19) fator -> LPAREN expr . RPAREN
+    (11) expr -> expr . MAIS termo
+    (12) expr -> expr . MENOS termo
+
+    RPAREN          shift and go to state 47
+    MAIS            shift and go to state 37
+    MENOS           shift and go to state 38
+
+
+state 42
+
+    (9) chamada_funcao -> OUTPUT LPAREN ID RPAREN .
+
+    PONTO_VIRGULA   reduce using rule 9 (chamada_funcao -> OUTPUT LPAREN ID RPAREN .)
+
+
+state 43
+
+    (11) expr -> expr MAIS termo .
+    (14) termo -> termo . VEZES fator
+    (15) termo -> termo . DIVIDE fator
+
+    MAIS            reduce using rule 11 (expr -> expr MAIS termo .)
+    MENOS           reduce using rule 11 (expr -> expr MAIS termo .)
+    PONTO_VIRGULA   reduce using rule 11 (expr -> expr MAIS termo .)
+    RPAREN          reduce using rule 11 (expr -> expr MAIS termo .)
+    VEZES           shift and go to state 39
+    DIVIDE          shift and go to state 40
+
+
+state 44
+
+    (12) expr -> expr MENOS termo .
+    (14) termo -> termo . VEZES fator
+    (15) termo -> termo . DIVIDE fator
+
+    MAIS            reduce using rule 12 (expr -> expr MENOS termo .)
+    MENOS           reduce using rule 12 (expr -> expr MENOS termo .)
+    PONTO_VIRGULA   reduce using rule 12 (expr -> expr MENOS termo .)
+    RPAREN          reduce using rule 12 (expr -> expr MENOS termo .)
+    VEZES           shift and go to state 39
+    DIVIDE          shift and go to state 40
+
+
+state 45
+
+    (14) termo -> termo VEZES fator .
+
+    VEZES           reduce using rule 14 (termo -> termo VEZES fator .)
+    DIVIDE          reduce using rule 14 (termo -> termo VEZES fator .)
+    MAIS            reduce using rule 14 (termo -> termo VEZES fator .)
+    MENOS           reduce using rule 14 (termo -> termo VEZES fator .)
+    PONTO_VIRGULA   reduce using rule 14 (termo -> termo VEZES fator .)
+    RPAREN          reduce using rule 14 (termo -> termo VEZES fator .)
+
+
+state 46
+
+    (15) termo -> termo DIVIDE fator .
+
+    VEZES           reduce using rule 15 (termo -> termo DIVIDE fator .)
+    DIVIDE          reduce using rule 15 (termo -> termo DIVIDE fator .)
+    MAIS            reduce using rule 15 (termo -> termo DIVIDE fator .)
+    MENOS           reduce using rule 15 (termo -> termo DIVIDE fator .)
+    PONTO_VIRGULA   reduce using rule 15 (termo -> termo DIVIDE fator .)
+    RPAREN          reduce using rule 15 (termo -> termo DIVIDE fator .)
+
+
+state 47
+
+    (19) fator -> LPAREN expr RPAREN .
+
+    VEZES           reduce using rule 19 (fator -> LPAREN expr RPAREN .)
+    DIVIDE          reduce using rule 19 (fator -> LPAREN expr RPAREN .)
+    MAIS            reduce using rule 19 (fator -> LPAREN expr RPAREN .)
+    MENOS           reduce using rule 19 (fator -> LPAREN expr RPAREN .)
+    PONTO_VIRGULA   reduce using rule 19 (fator -> LPAREN expr RPAREN .)
+    RPAREN          reduce using rule 19 (fator -> LPAREN expr RPAREN .)
+

@@ -1,0 +1,32 @@
+# Dependências
+node_modules/
+
+# Build e distribuição
+dist/
+build/
+out/
+
+# Arquivos de cache
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Diretórios de cache de pacotes
+.npm/
+.yarn/
+.pnpm-store/
+
+# Tipos temporários
+*.tsbuildinfo
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo

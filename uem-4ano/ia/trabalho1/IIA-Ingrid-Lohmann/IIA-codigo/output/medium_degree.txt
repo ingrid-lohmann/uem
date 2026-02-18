@@ -1,0 +1,21 @@
+✔ Escolha a instância de teste: Médio
+✔ Escolha a heurística para resolver o Sudoku: Grau (Heurística de Grau)
+✔ Deseja usar o pré-processamento AC-3? No
+
+🚀 Iniciando resolvedor...
+
+-----------------------------------------
+✅ Solução Encontrada:
+{
+  "V1": 2,
+  "V2": 1,
+  "V3": 3,
+  "V4": 4,
+  "V5": 3
+}
+
+📊 Métricas de Desempenho:
+   ⏱️  Tempo de Execução: 1.332 ms
+   🪢  Nós Visitados: 7
+   ↩️  Backtracks: 1
+-----------------------------------------

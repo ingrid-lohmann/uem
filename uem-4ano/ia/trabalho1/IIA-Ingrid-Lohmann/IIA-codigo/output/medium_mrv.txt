@@ -1,0 +1,21 @@
+✔ Escolha a instância de teste: Médio
+✔ Escolha a heurística para resolver o Sudoku: MRV (Valores Mínimos Restantes)
+✔ Deseja usar o pré-processamento AC-3? No
+
+🚀 Iniciando resolvedor...
+
+-----------------------------------------
+✅ Solução Encontrada:
+{
+  "V2": 1,
+  "V5": 3,
+  "V1": 2,
+  "V3": 3,
+  "V4": 4
+}
+
+📊 Métricas de Desempenho:
+   ⏱️  Tempo de Execução: 2.156 ms
+   🪢  Nós Visitados: 6
+   ↩️  Backtracks: 0
+-----------------------------------------

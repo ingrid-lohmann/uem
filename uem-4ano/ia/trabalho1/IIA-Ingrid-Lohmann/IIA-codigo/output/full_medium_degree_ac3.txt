@@ -1,0 +1,63 @@
+✔ Modo do Problema: Completo (4x4)
+✔ Escolha a instância de teste: undefined
+✔ Escolha a heurística para resolver o Sudoku: Grau (Heurística de Grau)
+✔ Deseja usar o pré-processamento AC-3? Yes
+
+🚀 Iniciando resolvedor...
+
+⚙️ Rodando AC-3 para pré-processamento...
+  ❌ [AC-3] Removendo valor 2 do domínio de C11 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C11 (conflito com C41)
+  ❌ [AC-3] Removendo valor 2 do domínio de C13 (conflito com C12)
+  ❌ [AC-3] Removendo valor 2 do domínio de C14 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C14 (conflito com C34)
+  ❌ [AC-3] Removendo valor 2 do domínio de C21 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C21 (conflito com C41)
+  ❌ [AC-3] Removendo valor 2 do domínio de C22 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C24 (conflito com C34)
+  ❌ [AC-3] Removendo valor 3 do domínio de C31 (conflito com C34)
+  ❌ [AC-3] Removendo valor 2 do domínio de C32 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C32 (conflito com C34)
+  ❌ [AC-3] Removendo valor 3 do domínio de C33 (conflito com C34)
+  ❌ [AC-3] Removendo valor 2 do domínio de C42 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C42 (conflito com C41)
+  ❌ [AC-3] Removendo valor 3 do domínio de C43 (conflito com C34)
+  ❌ [AC-3] Removendo valor 3 do domínio de C44 (conflito com C34)
+
+-----------------------------------------
+✅ Solução Encontrada:
+{
+  "C11": 1,
+  "C23": 1,
+  "C32": 1,
+  "C44": 1,
+  "C12": 2,
+  "C24": 2,
+  "C31": 2,
+  "C43": 2,
+  "C13": 3,
+  "C21": 4,
+  "C34": 3,
+  "C42": 4,
+  "C14": 4,
+  "C22": 3,
+  "C33": 4,
+  "C41": 3
+}
+
+   --- Tabuleiro Final ---
+   +---+---+---+---+
+   | 1 | 2 | 3 | 4 |
+   +---+---+---+---+
+   | 4 | 3 | 1 | 2 |
+   +---+---+---+---+
+   | 2 | 1 | 4 | 3 |
+   +---+---+---+---+
+   | 3 | 4 | 2 | 1 |
+   +---+---+---+---+
+
+📊 Métricas de Desempenho:
+   ⏱️  Tempo de Execução: 5.465 ms
+   🪢  Nós Visitados: 17
+   ↩️  Backtracks: 0
+-----------------------------------------

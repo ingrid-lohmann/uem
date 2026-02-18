@@ -1,0 +1,6 @@
+iniciar calculadin: 
+	input(a);
+	input(b);
+	result = 1.515 + b - @ +c;
+	output(result);
+finalizar calculadin. 

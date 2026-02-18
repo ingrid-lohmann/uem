@@ -1,0 +1,63 @@
+✔ Modo do Problema: Completo (4x4)
+✔ Escolha a instância de teste: undefined
+✔ Escolha a heurística para resolver o Sudoku: MRV (Valores Mínimos Restantes)
+✔ Deseja usar o pré-processamento AC-3? Yes
+
+🚀 Iniciando resolvedor...
+
+⚙️ Rodando AC-3 para pré-processamento...
+  ❌ [AC-3] Removendo valor 2 do domínio de C11 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C11 (conflito com C41)
+  ❌ [AC-3] Removendo valor 2 do domínio de C13 (conflito com C12)
+  ❌ [AC-3] Removendo valor 2 do domínio de C14 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C14 (conflito com C34)
+  ❌ [AC-3] Removendo valor 2 do domínio de C21 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C21 (conflito com C41)
+  ❌ [AC-3] Removendo valor 2 do domínio de C22 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C24 (conflito com C34)
+  ❌ [AC-3] Removendo valor 3 do domínio de C31 (conflito com C34)
+  ❌ [AC-3] Removendo valor 2 do domínio de C32 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C32 (conflito com C34)
+  ❌ [AC-3] Removendo valor 3 do domínio de C33 (conflito com C34)
+  ❌ [AC-3] Removendo valor 2 do domínio de C42 (conflito com C12)
+  ❌ [AC-3] Removendo valor 3 do domínio de C42 (conflito com C41)
+  ❌ [AC-3] Removendo valor 3 do domínio de C43 (conflito com C34)
+  ❌ [AC-3] Removendo valor 3 do domínio de C44 (conflito com C34)
+
+-----------------------------------------
+✅ Solução Encontrada:
+{
+  "C12": 2,
+  "C34": 3,
+  "C41": 3,
+  "C11": 1,
+  "C14": 4,
+  "C21": 4,
+  "C32": 1,
+  "C42": 4,
+  "C13": 3,
+  "C22": 3,
+  "C24": 1,
+  "C31": 2,
+  "C33": 4,
+  "C43": 1,
+  "C44": 2,
+  "C23": 2
+}
+
+   --- Tabuleiro Final ---
+   +---+---+---+---+
+   | 1 | 2 | 3 | 4 |
+   +---+---+---+---+
+   | 4 | 3 | 2 | 1 |
+   +---+---+---+---+
+   | 2 | 1 | 4 | 3 |
+   +---+---+---+---+
+   | 3 | 4 | 1 | 2 |
+   +---+---+---+---+
+
+📊 Métricas de Desempenho:
+   ⏱️  Tempo de Execução: 7.971 ms
+   🪢  Nós Visitados: 17
+   ↩️  Backtracks: 0
+-----------------------------------------

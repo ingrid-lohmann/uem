@@ -1,0 +1,2251 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> PROGRAM ID PONTO_VIRGULA bloco fim_do_programa
+Rule 2     bloco -> secao_declaracao_variaveis comando_composto
+Rule 3     bloco -> comando_composto
+Rule 4     secao_declaracao_variaveis -> VAR lista_declaracoes
+Rule 5     lista_declaracoes -> lista_declaracoes declaracao_variaveis PONTO_VIRGULA
+Rule 6     lista_declaracoes -> declaracao_variaveis PONTO_VIRGULA
+Rule 7     declaracao_variaveis -> lista_identificadores DOIS_PONTOS tipo
+Rule 8     lista_identificadores -> lista_identificadores VIRGULA ID
+Rule 9     lista_identificadores -> ID
+Rule 10    tipo -> INTEGER
+Rule 11    tipo -> BOOLEAN
+Rule 12    comando_composto -> BEGIN lista_comandos END
+Rule 13    lista_comandos -> lista_comandos PONTO_VIRGULA comando
+Rule 14    lista_comandos -> comando
+Rule 15    lista_comandos -> empty
+Rule 16    comando -> atribuicao
+Rule 17    comando -> condicional
+Rule 18    comando -> repeticao
+Rule 19    comando -> leitura
+Rule 20    comando -> escrita
+Rule 21    comando -> comando_composto
+Rule 22    atribuicao -> ID ATRIBUICAO expressao
+Rule 23    condicional -> IF expressao THEN comando
+Rule 24    condicional -> IF expressao THEN comando ELSE comando
+Rule 25    repeticao -> WHILE expressao DO comando
+Rule 26    leitura -> READ PARENTESE_ESQ lista_identificadores PARENTESE_DIR
+Rule 27    escrita -> WRITE PARENTESE_ESQ lista_expressoes PARENTESE_DIR
+Rule 28    lista_expressoes -> lista_expressoes VIRGULA expressao
+Rule 29    lista_expressoes -> expressao
+Rule 30    expressao -> expressao AND expressao
+Rule 31    expressao -> expressao OR expressao
+Rule 32    expressao -> expressao OP_RELACIONAL expressao
+Rule 33    expressao -> expressao OP_SOMA expressao
+Rule 34    expressao -> expressao OP_SUBTRACAO expressao
+Rule 35    expressao -> expressao OP_MULTIPLICA expressao
+Rule 36    expressao -> expressao DIV expressao
+Rule 37    expressao -> NOT expressao
+Rule 38    expressao -> OP_SUBTRACAO expressao
+Rule 39    expressao -> PARENTESE_ESQ expressao PARENTESE_DIR
+Rule 40    expressao -> ID
+Rule 41    expressao -> NUMERO
+Rule 42    expressao -> TRUE
+Rule 43    expressao -> FALSE
+Rule 44    empty -> <empty>
+Rule 45    fim_do_programa -> PONTO_FINAL
+Rule 46    fim_do_programa -> error
+Rule 47    fim_do_programa -> empty
+Rule 48    programa -> PROGRAM error PONTO_VIRGULA bloco PONTO_FINAL
+Rule 49    lista_declaracoes -> lista_declaracoes error PONTO_VIRGULA
+Rule 50    expressao -> expressao AND error
+Rule 51    expressao -> expressao OR error
+Rule 52    expressao -> expressao OP_RELACIONAL error
+Rule 53    expressao -> expressao OP_SOMA error
+Rule 54    expressao -> expressao OP_SUBTRACAO error
+Rule 55    expressao -> expressao OP_MULTIPLICA error
+Rule 56    expressao -> expressao DIV error
+Rule 57    atribuicao -> ID ATRIBUICAO expressao error
+Rule 58    lista_comandos -> lista_comandos PONTO_VIRGULA error
+Rule 59    condicional -> IF expressao error
+Rule 60    repeticao -> WHILE expressao error
+Rule 61    leitura -> READ PARENTESE_ESQ error PARENTESE_DIR
+Rule 62    lista_expressoes -> lista_expressoes VIRGULA error
+
+Terminals, with rules where they appear
+
+AND                  : 30 50
+ATRIBUICAO           : 22 57
+BEGIN                : 12
+BOOLEAN              : 11
+DIV                  : 36 56
+DO                   : 25
+DOIS_PONTOS          : 7
+ELSE                 : 24
+END                  : 12
+FALSE                : 43
+ID                   : 1 8 9 22 40 57
+IF                   : 23 24 59
+INTEGER              : 10
+NOT                  : 37
+NUMERO               : 41
+OP_MULTIPLICA        : 35 55
+OP_RELACIONAL        : 32 52
+OP_SOMA              : 33 53
+OP_SUBTRACAO         : 34 38 54
+OR                   : 31 51
+PARENTESE_DIR        : 26 27 39 61
+PARENTESE_ESQ        : 26 27 39 61
+PONTO_FINAL          : 45 48
+PONTO_VIRGULA        : 1 5 6 13 48 49 58
+PROGRAM              : 1 48
+READ                 : 26 61
+THEN                 : 23 24
+TRUE                 : 42
+VAR                  : 4
+VIRGULA              : 8 28 62
+WHILE                : 25 60
+WRITE                : 27
+error                : 46 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62
+
+Nonterminals, with rules where they appear
+
+atribuicao           : 16
+bloco                : 1 48
+comando              : 13 14 23 24 24 25
+comando_composto     : 2 3 21
+condicional          : 17
+declaracao_variaveis : 5 6
+empty                : 15 47
+escrita              : 20
+expressao            : 22 23 24 25 28 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 38 39 50 51 52 53 54 55 56 57 59 60
+fim_do_programa      : 1
+leitura              : 19
+lista_comandos       : 12 13 58
+lista_declaracoes    : 4 5 49
+lista_expressoes     : 27 28 62
+lista_identificadores : 7 8 26
+programa             : 0
+repeticao            : 18
+secao_declaracao_variaveis : 2
+tipo                 : 7
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . PROGRAM ID PONTO_VIRGULA bloco fim_do_programa
+    (48) programa -> . PROGRAM error PONTO_VIRGULA bloco PONTO_FINAL
+
+    PROGRAM         shift and go to state 2
+
+    programa                       shift and go to state 1
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> PROGRAM . ID PONTO_VIRGULA bloco fim_do_programa
+    (48) programa -> PROGRAM . error PONTO_VIRGULA bloco PONTO_FINAL
+
+    ID              shift and go to state 3
+    error           shift and go to state 4
+
+
+state 3
+
+    (1) programa -> PROGRAM ID . PONTO_VIRGULA bloco fim_do_programa
+
+    PONTO_VIRGULA   shift and go to state 5
+
+
+state 4
+
+    (48) programa -> PROGRAM error . PONTO_VIRGULA bloco PONTO_FINAL
+
+    PONTO_VIRGULA   shift and go to state 6
+
+
+state 5
+
+    (1) programa -> PROGRAM ID PONTO_VIRGULA . bloco fim_do_programa
+    (2) bloco -> . secao_declaracao_variaveis comando_composto
+    (3) bloco -> . comando_composto
+    (4) secao_declaracao_variaveis -> . VAR lista_declaracoes
+    (12) comando_composto -> . BEGIN lista_comandos END
+
+    VAR             shift and go to state 10
+    BEGIN           shift and go to state 11
+
+    bloco                          shift and go to state 7
+    secao_declaracao_variaveis     shift and go to state 8
+    comando_composto               shift and go to state 9
+
+state 6
+
+    (48) programa -> PROGRAM error PONTO_VIRGULA . bloco PONTO_FINAL
+    (2) bloco -> . secao_declaracao_variaveis comando_composto
+    (3) bloco -> . comando_composto
+    (4) secao_declaracao_variaveis -> . VAR lista_declaracoes
+    (12) comando_composto -> . BEGIN lista_comandos END
+
+    VAR             shift and go to state 10
+    BEGIN           shift and go to state 11
+
+    bloco                          shift and go to state 12
+    secao_declaracao_variaveis     shift and go to state 8
+    comando_composto               shift and go to state 9
+
+state 7
+
+    (1) programa -> PROGRAM ID PONTO_VIRGULA bloco . fim_do_programa
+    (45) fim_do_programa -> . PONTO_FINAL
+    (46) fim_do_programa -> . error
+    (47) fim_do_programa -> . empty
+    (44) empty -> .
+
+    PONTO_FINAL     shift and go to state 14
+    error           shift and go to state 15
+    $end            reduce using rule 44 (empty -> .)
+
+    fim_do_programa                shift and go to state 13
+    empty                          shift and go to state 16
+
+state 8
+
+    (2) bloco -> secao_declaracao_variaveis . comando_composto
+    (12) comando_composto -> . BEGIN lista_comandos END
+
+    BEGIN           shift and go to state 11
+
+    comando_composto               shift and go to state 17
+
+state 9
+
+    (3) bloco -> comando_composto .
+
+    PONTO_FINAL     reduce using rule 3 (bloco -> comando_composto .)
+    error           reduce using rule 3 (bloco -> comando_composto .)
+    $end            reduce using rule 3 (bloco -> comando_composto .)
+
+
+state 10
+
+    (4) secao_declaracao_variaveis -> VAR . lista_declaracoes
+    (5) lista_declaracoes -> . lista_declaracoes declaracao_variaveis PONTO_VIRGULA
+    (6) lista_declaracoes -> . declaracao_variaveis PONTO_VIRGULA
+    (49) lista_declaracoes -> . lista_declaracoes error PONTO_VIRGULA
+    (7) declaracao_variaveis -> . lista_identificadores DOIS_PONTOS tipo
+    (8) lista_identificadores -> . lista_identificadores VIRGULA ID
+    (9) lista_identificadores -> . ID
+
+    ID              shift and go to state 21
+
+    lista_declaracoes              shift and go to state 18
+    declaracao_variaveis           shift and go to state 19
+    lista_identificadores          shift and go to state 20
+
+state 11
+
+    (12) comando_composto -> BEGIN . lista_comandos END
+    (13) lista_comandos -> . lista_comandos PONTO_VIRGULA comando
+    (14) lista_comandos -> . comando
+    (15) lista_comandos -> . empty
+    (58) lista_comandos -> . lista_comandos PONTO_VIRGULA error
+    (16) comando -> . atribuicao
+    (17) comando -> . condicional
+    (18) comando -> . repeticao
+    (19) comando -> . leitura
+    (20) comando -> . escrita
+    (21) comando -> . comando_composto
+    (44) empty -> .
+    (22) atribuicao -> . ID ATRIBUICAO expressao
+    (57) atribuicao -> . ID ATRIBUICAO expressao error
+    (23) condicional -> . IF expressao THEN comando
+    (24) condicional -> . IF expressao THEN comando ELSE comando
+    (59) condicional -> . IF expressao error
+    (25) repeticao -> . WHILE expressao DO comando
+    (60) repeticao -> . WHILE expressao error
+    (26) leitura -> . READ PARENTESE_ESQ lista_identificadores PARENTESE_DIR
+    (61) leitura -> . READ PARENTESE_ESQ error PARENTESE_DIR
+    (27) escrita -> . WRITE PARENTESE_ESQ lista_expressoes PARENTESE_DIR
+    (12) comando_composto -> . BEGIN lista_comandos END
+
+    END             reduce using rule 44 (empty -> .)
+    PONTO_VIRGULA   reduce using rule 44 (empty -> .)
+    ID              shift and go to state 31
+    IF              shift and go to state 32
+    WHILE           shift and go to state 33
+    READ            shift and go to state 34
+    WRITE           shift and go to state 35
+    BEGIN           shift and go to state 11
+
+    lista_comandos                 shift and go to state 22
+    comando                        shift and go to state 23
+    empty                          shift and go to state 24
+    atribuicao                     shift and go to state 25
+    condicional                    shift and go to state 26
+    repeticao                      shift and go to state 27
+    leitura                        shift and go to state 28
+    escrita                        shift and go to state 29
+    comando_composto               shift and go to state 30
+
+state 12
+
+    (48) programa -> PROGRAM error PONTO_VIRGULA bloco . PONTO_FINAL
+
+    PONTO_FINAL     shift and go to state 36
+
+
+state 13
+
+    (1) programa -> PROGRAM ID PONTO_VIRGULA bloco fim_do_programa .
+
+    $end            reduce using rule 1 (programa -> PROGRAM ID PONTO_VIRGULA bloco fim_do_programa .)
+
+
+state 14
+
+    (45) fim_do_programa -> PONTO_FINAL .
+
+    $end            reduce using rule 45 (fim_do_programa -> PONTO_FINAL .)
+
+
+state 15
+
+    (46) fim_do_programa -> error .
+
+    $end            reduce using rule 46 (fim_do_programa -> error .)
+
+
+state 16
+
+    (47) fim_do_programa -> empty .
+
+    $end            reduce using rule 47 (fim_do_programa -> empty .)
+
+
+state 17
+
+    (2) bloco -> secao_declaracao_variaveis comando_composto .
+
+    PONTO_FINAL     reduce using rule 2 (bloco -> secao_declaracao_variaveis comando_composto .)
+    error           reduce using rule 2 (bloco -> secao_declaracao_variaveis comando_composto .)
+    $end            reduce using rule 2 (bloco -> secao_declaracao_variaveis comando_composto .)
+
+
+state 18
+
+    (4) secao_declaracao_variaveis -> VAR lista_declaracoes .
+    (5) lista_declaracoes -> lista_declaracoes . declaracao_variaveis PONTO_VIRGULA
+    (49) lista_declaracoes -> lista_declaracoes . error PONTO_VIRGULA
+    (7) declaracao_variaveis -> . lista_identificadores DOIS_PONTOS tipo
+    (8) lista_identificadores -> . lista_identificadores VIRGULA ID
+    (9) lista_identificadores -> . ID
+
+    BEGIN           reduce using rule 4 (secao_declaracao_variaveis -> VAR lista_declaracoes .)
+    error           shift and go to state 38
+    ID              shift and go to state 21
+
+    declaracao_variaveis           shift and go to state 37
+    lista_identificadores          shift and go to state 20
+
+state 19
+
+    (6) lista_declaracoes -> declaracao_variaveis . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 39
+
+
+state 20
+
+    (7) declaracao_variaveis -> lista_identificadores . DOIS_PONTOS tipo
+    (8) lista_identificadores -> lista_identificadores . VIRGULA ID
+
+    DOIS_PONTOS     shift and go to state 40
+    VIRGULA         shift and go to state 41
+
+
+state 21
+
+    (9) lista_identificadores -> ID .
+
+    DOIS_PONTOS     reduce using rule 9 (lista_identificadores -> ID .)
+    VIRGULA         reduce using rule 9 (lista_identificadores -> ID .)
+    PARENTESE_DIR   reduce using rule 9 (lista_identificadores -> ID .)
+
+
+state 22
+
+    (12) comando_composto -> BEGIN lista_comandos . END
+    (13) lista_comandos -> lista_comandos . PONTO_VIRGULA comando
+    (58) lista_comandos -> lista_comandos . PONTO_VIRGULA error
+
+    END             shift and go to state 42
+    PONTO_VIRGULA   shift and go to state 43
+
+
+state 23
+
+    (14) lista_comandos -> comando .
+
+    END             reduce using rule 14 (lista_comandos -> comando .)
+    PONTO_VIRGULA   reduce using rule 14 (lista_comandos -> comando .)
+
+
+state 24
+
+    (15) lista_comandos -> empty .
+
+    END             reduce using rule 15 (lista_comandos -> empty .)
+    PONTO_VIRGULA   reduce using rule 15 (lista_comandos -> empty .)
+
+
+state 25
+
+    (16) comando -> atribuicao .
+
+    END             reduce using rule 16 (comando -> atribuicao .)
+    PONTO_VIRGULA   reduce using rule 16 (comando -> atribuicao .)
+    ELSE            reduce using rule 16 (comando -> atribuicao .)
+
+
+state 26
+
+    (17) comando -> condicional .
+
+    END             reduce using rule 17 (comando -> condicional .)
+    PONTO_VIRGULA   reduce using rule 17 (comando -> condicional .)
+    ELSE            reduce using rule 17 (comando -> condicional .)
+
+
+state 27
+
+    (18) comando -> repeticao .
+
+    END             reduce using rule 18 (comando -> repeticao .)
+    PONTO_VIRGULA   reduce using rule 18 (comando -> repeticao .)
+    ELSE            reduce using rule 18 (comando -> repeticao .)
+
+
+state 28
+
+    (19) comando -> leitura .
+
+    END             reduce using rule 19 (comando -> leitura .)
+    PONTO_VIRGULA   reduce using rule 19 (comando -> leitura .)
+    ELSE            reduce using rule 19 (comando -> leitura .)
+
+
+state 29
+
+    (20) comando -> escrita .
+
+    END             reduce using rule 20 (comando -> escrita .)
+    PONTO_VIRGULA   reduce using rule 20 (comando -> escrita .)
+    ELSE            reduce using rule 20 (comando -> escrita .)
+
+
+state 30
+
+    (21) comando -> comando_composto .
+
+    END             reduce using rule 21 (comando -> comando_composto .)
+    PONTO_VIRGULA   reduce using rule 21 (comando -> comando_composto .)
+    ELSE            reduce using rule 21 (comando -> comando_composto .)
+
+
+state 31
+
+    (22) atribuicao -> ID . ATRIBUICAO expressao
+    (57) atribuicao -> ID . ATRIBUICAO expressao error
+
+    ATRIBUICAO      shift and go to state 44
+
+
+state 32
+
+    (23) condicional -> IF . expressao THEN comando
+    (24) condicional -> IF . expressao THEN comando ELSE comando
+    (59) condicional -> IF . expressao error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 45
+
+state 33
+
+    (25) repeticao -> WHILE . expressao DO comando
+    (60) repeticao -> WHILE . expressao error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 53
+
+state 34
+
+    (26) leitura -> READ . PARENTESE_ESQ lista_identificadores PARENTESE_DIR
+    (61) leitura -> READ . PARENTESE_ESQ error PARENTESE_DIR
+
+    PARENTESE_ESQ   shift and go to state 54
+
+
+state 35
+
+    (27) escrita -> WRITE . PARENTESE_ESQ lista_expressoes PARENTESE_DIR
+
+    PARENTESE_ESQ   shift and go to state 55
+
+
+state 36
+
+    (48) programa -> PROGRAM error PONTO_VIRGULA bloco PONTO_FINAL .
+
+    $end            reduce using rule 48 (programa -> PROGRAM error PONTO_VIRGULA bloco PONTO_FINAL .)
+
+
+state 37
+
+    (5) lista_declaracoes -> lista_declaracoes declaracao_variaveis . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 56
+
+
+state 38
+
+    (49) lista_declaracoes -> lista_declaracoes error . PONTO_VIRGULA
+
+    PONTO_VIRGULA   shift and go to state 57
+
+
+state 39
+
+    (6) lista_declaracoes -> declaracao_variaveis PONTO_VIRGULA .
+
+    error           reduce using rule 6 (lista_declaracoes -> declaracao_variaveis PONTO_VIRGULA .)
+    ID              reduce using rule 6 (lista_declaracoes -> declaracao_variaveis PONTO_VIRGULA .)
+    BEGIN           reduce using rule 6 (lista_declaracoes -> declaracao_variaveis PONTO_VIRGULA .)
+
+
+state 40
+
+    (7) declaracao_variaveis -> lista_identificadores DOIS_PONTOS . tipo
+    (10) tipo -> . INTEGER
+    (11) tipo -> . BOOLEAN
+
+    INTEGER         shift and go to state 59
+    BOOLEAN         shift and go to state 60
+
+    tipo                           shift and go to state 58
+
+state 41
+
+    (8) lista_identificadores -> lista_identificadores VIRGULA . ID
+
+    ID              shift and go to state 61
+
+
+state 42
+
+    (12) comando_composto -> BEGIN lista_comandos END .
+
+    PONTO_FINAL     reduce using rule 12 (comando_composto -> BEGIN lista_comandos END .)
+    error           reduce using rule 12 (comando_composto -> BEGIN lista_comandos END .)
+    $end            reduce using rule 12 (comando_composto -> BEGIN lista_comandos END .)
+    END             reduce using rule 12 (comando_composto -> BEGIN lista_comandos END .)
+    PONTO_VIRGULA   reduce using rule 12 (comando_composto -> BEGIN lista_comandos END .)
+    ELSE            reduce using rule 12 (comando_composto -> BEGIN lista_comandos END .)
+
+
+state 43
+
+    (13) lista_comandos -> lista_comandos PONTO_VIRGULA . comando
+    (58) lista_comandos -> lista_comandos PONTO_VIRGULA . error
+    (16) comando -> . atribuicao
+    (17) comando -> . condicional
+    (18) comando -> . repeticao
+    (19) comando -> . leitura
+    (20) comando -> . escrita
+    (21) comando -> . comando_composto
+    (22) atribuicao -> . ID ATRIBUICAO expressao
+    (57) atribuicao -> . ID ATRIBUICAO expressao error
+    (23) condicional -> . IF expressao THEN comando
+    (24) condicional -> . IF expressao THEN comando ELSE comando
+    (59) condicional -> . IF expressao error
+    (25) repeticao -> . WHILE expressao DO comando
+    (60) repeticao -> . WHILE expressao error
+    (26) leitura -> . READ PARENTESE_ESQ lista_identificadores PARENTESE_DIR
+    (61) leitura -> . READ PARENTESE_ESQ error PARENTESE_DIR
+    (27) escrita -> . WRITE PARENTESE_ESQ lista_expressoes PARENTESE_DIR
+    (12) comando_composto -> . BEGIN lista_comandos END
+
+    error           shift and go to state 63
+    ID              shift and go to state 31
+    IF              shift and go to state 32
+    WHILE           shift and go to state 33
+    READ            shift and go to state 34
+    WRITE           shift and go to state 35
+    BEGIN           shift and go to state 11
+
+    comando                        shift and go to state 62
+    atribuicao                     shift and go to state 25
+    condicional                    shift and go to state 26
+    repeticao                      shift and go to state 27
+    leitura                        shift and go to state 28
+    escrita                        shift and go to state 29
+    comando_composto               shift and go to state 30
+
+state 44
+
+    (22) atribuicao -> ID ATRIBUICAO . expressao
+    (57) atribuicao -> ID ATRIBUICAO . expressao error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 64
+
+state 45
+
+    (23) condicional -> IF expressao . THEN comando
+    (24) condicional -> IF expressao . THEN comando ELSE comando
+    (59) condicional -> IF expressao . error
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    THEN            shift and go to state 65
+    error           shift and go to state 66
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+    OP_RELACIONAL   shift and go to state 69
+    OP_SOMA         shift and go to state 70
+    OP_SUBTRACAO    shift and go to state 71
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+
+state 46
+
+    (38) expressao -> OP_SUBTRACAO . expressao
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 74
+
+state 47
+
+    (37) expressao -> NOT . expressao
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 75
+
+state 48
+
+    (39) expressao -> PARENTESE_ESQ . expressao PARENTESE_DIR
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 76
+
+state 49
+
+    (40) expressao -> ID .
+
+    THEN            reduce using rule 40 (expressao -> ID .)
+    error           reduce using rule 40 (expressao -> ID .)
+    AND             reduce using rule 40 (expressao -> ID .)
+    OR              reduce using rule 40 (expressao -> ID .)
+    OP_RELACIONAL   reduce using rule 40 (expressao -> ID .)
+    OP_SOMA         reduce using rule 40 (expressao -> ID .)
+    OP_SUBTRACAO    reduce using rule 40 (expressao -> ID .)
+    OP_MULTIPLICA   reduce using rule 40 (expressao -> ID .)
+    DIV             reduce using rule 40 (expressao -> ID .)
+    DO              reduce using rule 40 (expressao -> ID .)
+    END             reduce using rule 40 (expressao -> ID .)
+    PONTO_VIRGULA   reduce using rule 40 (expressao -> ID .)
+    ELSE            reduce using rule 40 (expressao -> ID .)
+    PARENTESE_DIR   reduce using rule 40 (expressao -> ID .)
+    VIRGULA         reduce using rule 40 (expressao -> ID .)
+
+
+state 50
+
+    (41) expressao -> NUMERO .
+
+    THEN            reduce using rule 41 (expressao -> NUMERO .)
+    error           reduce using rule 41 (expressao -> NUMERO .)
+    AND             reduce using rule 41 (expressao -> NUMERO .)
+    OR              reduce using rule 41 (expressao -> NUMERO .)
+    OP_RELACIONAL   reduce using rule 41 (expressao -> NUMERO .)
+    OP_SOMA         reduce using rule 41 (expressao -> NUMERO .)
+    OP_SUBTRACAO    reduce using rule 41 (expressao -> NUMERO .)
+    OP_MULTIPLICA   reduce using rule 41 (expressao -> NUMERO .)
+    DIV             reduce using rule 41 (expressao -> NUMERO .)
+    DO              reduce using rule 41 (expressao -> NUMERO .)
+    END             reduce using rule 41 (expressao -> NUMERO .)
+    PONTO_VIRGULA   reduce using rule 41 (expressao -> NUMERO .)
+    ELSE            reduce using rule 41 (expressao -> NUMERO .)
+    PARENTESE_DIR   reduce using rule 41 (expressao -> NUMERO .)
+    VIRGULA         reduce using rule 41 (expressao -> NUMERO .)
+
+
+state 51
+
+    (42) expressao -> TRUE .
+
+    THEN            reduce using rule 42 (expressao -> TRUE .)
+    error           reduce using rule 42 (expressao -> TRUE .)
+    AND             reduce using rule 42 (expressao -> TRUE .)
+    OR              reduce using rule 42 (expressao -> TRUE .)
+    OP_RELACIONAL   reduce using rule 42 (expressao -> TRUE .)
+    OP_SOMA         reduce using rule 42 (expressao -> TRUE .)
+    OP_SUBTRACAO    reduce using rule 42 (expressao -> TRUE .)
+    OP_MULTIPLICA   reduce using rule 42 (expressao -> TRUE .)
+    DIV             reduce using rule 42 (expressao -> TRUE .)
+    DO              reduce using rule 42 (expressao -> TRUE .)
+    END             reduce using rule 42 (expressao -> TRUE .)
+    PONTO_VIRGULA   reduce using rule 42 (expressao -> TRUE .)
+    ELSE            reduce using rule 42 (expressao -> TRUE .)
+    PARENTESE_DIR   reduce using rule 42 (expressao -> TRUE .)
+    VIRGULA         reduce using rule 42 (expressao -> TRUE .)
+
+
+state 52
+
+    (43) expressao -> FALSE .
+
+    THEN            reduce using rule 43 (expressao -> FALSE .)
+    error           reduce using rule 43 (expressao -> FALSE .)
+    AND             reduce using rule 43 (expressao -> FALSE .)
+    OR              reduce using rule 43 (expressao -> FALSE .)
+    OP_RELACIONAL   reduce using rule 43 (expressao -> FALSE .)
+    OP_SOMA         reduce using rule 43 (expressao -> FALSE .)
+    OP_SUBTRACAO    reduce using rule 43 (expressao -> FALSE .)
+    OP_MULTIPLICA   reduce using rule 43 (expressao -> FALSE .)
+    DIV             reduce using rule 43 (expressao -> FALSE .)
+    DO              reduce using rule 43 (expressao -> FALSE .)
+    END             reduce using rule 43 (expressao -> FALSE .)
+    PONTO_VIRGULA   reduce using rule 43 (expressao -> FALSE .)
+    ELSE            reduce using rule 43 (expressao -> FALSE .)
+    PARENTESE_DIR   reduce using rule 43 (expressao -> FALSE .)
+    VIRGULA         reduce using rule 43 (expressao -> FALSE .)
+
+
+state 53
+
+    (25) repeticao -> WHILE expressao . DO comando
+    (60) repeticao -> WHILE expressao . error
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    DO              shift and go to state 77
+    error           shift and go to state 78
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+    OP_RELACIONAL   shift and go to state 69
+    OP_SOMA         shift and go to state 70
+    OP_SUBTRACAO    shift and go to state 71
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+
+state 54
+
+    (26) leitura -> READ PARENTESE_ESQ . lista_identificadores PARENTESE_DIR
+    (61) leitura -> READ PARENTESE_ESQ . error PARENTESE_DIR
+    (8) lista_identificadores -> . lista_identificadores VIRGULA ID
+    (9) lista_identificadores -> . ID
+
+    error           shift and go to state 80
+    ID              shift and go to state 21
+
+    lista_identificadores          shift and go to state 79
+
+state 55
+
+    (27) escrita -> WRITE PARENTESE_ESQ . lista_expressoes PARENTESE_DIR
+    (28) lista_expressoes -> . lista_expressoes VIRGULA expressao
+    (29) lista_expressoes -> . expressao
+    (62) lista_expressoes -> . lista_expressoes VIRGULA error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    lista_expressoes               shift and go to state 81
+    expressao                      shift and go to state 82
+
+state 56
+
+    (5) lista_declaracoes -> lista_declaracoes declaracao_variaveis PONTO_VIRGULA .
+
+    error           reduce using rule 5 (lista_declaracoes -> lista_declaracoes declaracao_variaveis PONTO_VIRGULA .)
+    ID              reduce using rule 5 (lista_declaracoes -> lista_declaracoes declaracao_variaveis PONTO_VIRGULA .)
+    BEGIN           reduce using rule 5 (lista_declaracoes -> lista_declaracoes declaracao_variaveis PONTO_VIRGULA .)
+
+
+state 57
+
+    (49) lista_declaracoes -> lista_declaracoes error PONTO_VIRGULA .
+
+    error           reduce using rule 49 (lista_declaracoes -> lista_declaracoes error PONTO_VIRGULA .)
+    ID              reduce using rule 49 (lista_declaracoes -> lista_declaracoes error PONTO_VIRGULA .)
+    BEGIN           reduce using rule 49 (lista_declaracoes -> lista_declaracoes error PONTO_VIRGULA .)
+
+
+state 58
+
+    (7) declaracao_variaveis -> lista_identificadores DOIS_PONTOS tipo .
+
+    PONTO_VIRGULA   reduce using rule 7 (declaracao_variaveis -> lista_identificadores DOIS_PONTOS tipo .)
+
+
+state 59
+
+    (10) tipo -> INTEGER .
+
+    PONTO_VIRGULA   reduce using rule 10 (tipo -> INTEGER .)
+
+
+state 60
+
+    (11) tipo -> BOOLEAN .
+
+    PONTO_VIRGULA   reduce using rule 11 (tipo -> BOOLEAN .)
+
+
+state 61
+
+    (8) lista_identificadores -> lista_identificadores VIRGULA ID .
+
+    DOIS_PONTOS     reduce using rule 8 (lista_identificadores -> lista_identificadores VIRGULA ID .)
+    VIRGULA         reduce using rule 8 (lista_identificadores -> lista_identificadores VIRGULA ID .)
+    PARENTESE_DIR   reduce using rule 8 (lista_identificadores -> lista_identificadores VIRGULA ID .)
+
+
+state 62
+
+    (13) lista_comandos -> lista_comandos PONTO_VIRGULA comando .
+
+    END             reduce using rule 13 (lista_comandos -> lista_comandos PONTO_VIRGULA comando .)
+    PONTO_VIRGULA   reduce using rule 13 (lista_comandos -> lista_comandos PONTO_VIRGULA comando .)
+
+
+state 63
+
+    (58) lista_comandos -> lista_comandos PONTO_VIRGULA error .
+
+    END             reduce using rule 58 (lista_comandos -> lista_comandos PONTO_VIRGULA error .)
+    PONTO_VIRGULA   reduce using rule 58 (lista_comandos -> lista_comandos PONTO_VIRGULA error .)
+
+
+state 64
+
+    (22) atribuicao -> ID ATRIBUICAO expressao .
+    (57) atribuicao -> ID ATRIBUICAO expressao . error
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    END             reduce using rule 22 (atribuicao -> ID ATRIBUICAO expressao .)
+    PONTO_VIRGULA   reduce using rule 22 (atribuicao -> ID ATRIBUICAO expressao .)
+    ELSE            reduce using rule 22 (atribuicao -> ID ATRIBUICAO expressao .)
+    error           shift and go to state 83
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+    OP_RELACIONAL   shift and go to state 69
+    OP_SOMA         shift and go to state 70
+    OP_SUBTRACAO    shift and go to state 71
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+
+state 65
+
+    (23) condicional -> IF expressao THEN . comando
+    (24) condicional -> IF expressao THEN . comando ELSE comando
+    (16) comando -> . atribuicao
+    (17) comando -> . condicional
+    (18) comando -> . repeticao
+    (19) comando -> . leitura
+    (20) comando -> . escrita
+    (21) comando -> . comando_composto
+    (22) atribuicao -> . ID ATRIBUICAO expressao
+    (57) atribuicao -> . ID ATRIBUICAO expressao error
+    (23) condicional -> . IF expressao THEN comando
+    (24) condicional -> . IF expressao THEN comando ELSE comando
+    (59) condicional -> . IF expressao error
+    (25) repeticao -> . WHILE expressao DO comando
+    (60) repeticao -> . WHILE expressao error
+    (26) leitura -> . READ PARENTESE_ESQ lista_identificadores PARENTESE_DIR
+    (61) leitura -> . READ PARENTESE_ESQ error PARENTESE_DIR
+    (27) escrita -> . WRITE PARENTESE_ESQ lista_expressoes PARENTESE_DIR
+    (12) comando_composto -> . BEGIN lista_comandos END
+
+    ID              shift and go to state 31
+    IF              shift and go to state 32
+    WHILE           shift and go to state 33
+    READ            shift and go to state 34
+    WRITE           shift and go to state 35
+    BEGIN           shift and go to state 11
+
+    comando                        shift and go to state 84
+    atribuicao                     shift and go to state 25
+    condicional                    shift and go to state 26
+    repeticao                      shift and go to state 27
+    leitura                        shift and go to state 28
+    escrita                        shift and go to state 29
+    comando_composto               shift and go to state 30
+
+state 66
+
+    (59) condicional -> IF expressao error .
+
+    END             reduce using rule 59 (condicional -> IF expressao error .)
+    PONTO_VIRGULA   reduce using rule 59 (condicional -> IF expressao error .)
+    ELSE            reduce using rule 59 (condicional -> IF expressao error .)
+
+
+state 67
+
+    (30) expressao -> expressao AND . expressao
+    (50) expressao -> expressao AND . error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    error           shift and go to state 86
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 85
+
+state 68
+
+    (31) expressao -> expressao OR . expressao
+    (51) expressao -> expressao OR . error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    error           shift and go to state 88
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 87
+
+state 69
+
+    (32) expressao -> expressao OP_RELACIONAL . expressao
+    (52) expressao -> expressao OP_RELACIONAL . error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    error           shift and go to state 90
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 89
+
+state 70
+
+    (33) expressao -> expressao OP_SOMA . expressao
+    (53) expressao -> expressao OP_SOMA . error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    error           shift and go to state 92
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 91
+
+state 71
+
+    (34) expressao -> expressao OP_SUBTRACAO . expressao
+    (54) expressao -> expressao OP_SUBTRACAO . error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    error           shift and go to state 94
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 93
+
+state 72
+
+    (35) expressao -> expressao OP_MULTIPLICA . expressao
+    (55) expressao -> expressao OP_MULTIPLICA . error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    error           shift and go to state 96
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 95
+
+state 73
+
+    (36) expressao -> expressao DIV . expressao
+    (56) expressao -> expressao DIV . error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    error           shift and go to state 98
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 97
+
+state 74
+
+    (38) expressao -> OP_SUBTRACAO expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    THEN            reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    error           reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    AND             reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    OR              reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    OP_RELACIONAL   reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    OP_SOMA         reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    OP_SUBTRACAO    reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    OP_MULTIPLICA   reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    DIV             reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    DO              reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    END             reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    PONTO_VIRGULA   reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    ELSE            reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    PARENTESE_DIR   reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+    VIRGULA         reduce using rule 38 (expressao -> OP_SUBTRACAO expressao .)
+
+  ! AND             [ shift and go to state 67 ]
+  ! OR              [ shift and go to state 68 ]
+  ! OP_RELACIONAL   [ shift and go to state 69 ]
+  ! OP_SOMA         [ shift and go to state 70 ]
+  ! OP_SUBTRACAO    [ shift and go to state 71 ]
+  ! OP_MULTIPLICA   [ shift and go to state 72 ]
+  ! DIV             [ shift and go to state 73 ]
+
+
+state 75
+
+    (37) expressao -> NOT expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    THEN            reduce using rule 37 (expressao -> NOT expressao .)
+    error           reduce using rule 37 (expressao -> NOT expressao .)
+    AND             reduce using rule 37 (expressao -> NOT expressao .)
+    OR              reduce using rule 37 (expressao -> NOT expressao .)
+    DO              reduce using rule 37 (expressao -> NOT expressao .)
+    END             reduce using rule 37 (expressao -> NOT expressao .)
+    PONTO_VIRGULA   reduce using rule 37 (expressao -> NOT expressao .)
+    ELSE            reduce using rule 37 (expressao -> NOT expressao .)
+    PARENTESE_DIR   reduce using rule 37 (expressao -> NOT expressao .)
+    VIRGULA         reduce using rule 37 (expressao -> NOT expressao .)
+    OP_RELACIONAL   shift and go to state 69
+    OP_SOMA         shift and go to state 70
+    OP_SUBTRACAO    shift and go to state 71
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+  ! OP_RELACIONAL   [ reduce using rule 37 (expressao -> NOT expressao .) ]
+  ! OP_SOMA         [ reduce using rule 37 (expressao -> NOT expressao .) ]
+  ! OP_SUBTRACAO    [ reduce using rule 37 (expressao -> NOT expressao .) ]
+  ! OP_MULTIPLICA   [ reduce using rule 37 (expressao -> NOT expressao .) ]
+  ! DIV             [ reduce using rule 37 (expressao -> NOT expressao .) ]
+  ! AND             [ shift and go to state 67 ]
+  ! OR              [ shift and go to state 68 ]
+
+
+state 76
+
+    (39) expressao -> PARENTESE_ESQ expressao . PARENTESE_DIR
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    PARENTESE_DIR   shift and go to state 99
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+    OP_RELACIONAL   shift and go to state 69
+    OP_SOMA         shift and go to state 70
+    OP_SUBTRACAO    shift and go to state 71
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+
+state 77
+
+    (25) repeticao -> WHILE expressao DO . comando
+    (16) comando -> . atribuicao
+    (17) comando -> . condicional
+    (18) comando -> . repeticao
+    (19) comando -> . leitura
+    (20) comando -> . escrita
+    (21) comando -> . comando_composto
+    (22) atribuicao -> . ID ATRIBUICAO expressao
+    (57) atribuicao -> . ID ATRIBUICAO expressao error
+    (23) condicional -> . IF expressao THEN comando
+    (24) condicional -> . IF expressao THEN comando ELSE comando
+    (59) condicional -> . IF expressao error
+    (25) repeticao -> . WHILE expressao DO comando
+    (60) repeticao -> . WHILE expressao error
+    (26) leitura -> . READ PARENTESE_ESQ lista_identificadores PARENTESE_DIR
+    (61) leitura -> . READ PARENTESE_ESQ error PARENTESE_DIR
+    (27) escrita -> . WRITE PARENTESE_ESQ lista_expressoes PARENTESE_DIR
+    (12) comando_composto -> . BEGIN lista_comandos END
+
+    ID              shift and go to state 31
+    IF              shift and go to state 32
+    WHILE           shift and go to state 33
+    READ            shift and go to state 34
+    WRITE           shift and go to state 35
+    BEGIN           shift and go to state 11
+
+    comando                        shift and go to state 100
+    atribuicao                     shift and go to state 25
+    condicional                    shift and go to state 26
+    repeticao                      shift and go to state 27
+    leitura                        shift and go to state 28
+    escrita                        shift and go to state 29
+    comando_composto               shift and go to state 30
+
+state 78
+
+    (60) repeticao -> WHILE expressao error .
+
+    END             reduce using rule 60 (repeticao -> WHILE expressao error .)
+    PONTO_VIRGULA   reduce using rule 60 (repeticao -> WHILE expressao error .)
+    ELSE            reduce using rule 60 (repeticao -> WHILE expressao error .)
+
+
+state 79
+
+    (26) leitura -> READ PARENTESE_ESQ lista_identificadores . PARENTESE_DIR
+    (8) lista_identificadores -> lista_identificadores . VIRGULA ID
+
+    PARENTESE_DIR   shift and go to state 101
+    VIRGULA         shift and go to state 41
+
+
+state 80
+
+    (61) leitura -> READ PARENTESE_ESQ error . PARENTESE_DIR
+
+    PARENTESE_DIR   shift and go to state 102
+
+
+state 81
+
+    (27) escrita -> WRITE PARENTESE_ESQ lista_expressoes . PARENTESE_DIR
+    (28) lista_expressoes -> lista_expressoes . VIRGULA expressao
+    (62) lista_expressoes -> lista_expressoes . VIRGULA error
+
+    PARENTESE_DIR   shift and go to state 103
+    VIRGULA         shift and go to state 104
+
+
+state 82
+
+    (29) lista_expressoes -> expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    PARENTESE_DIR   reduce using rule 29 (lista_expressoes -> expressao .)
+    VIRGULA         reduce using rule 29 (lista_expressoes -> expressao .)
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+    OP_RELACIONAL   shift and go to state 69
+    OP_SOMA         shift and go to state 70
+    OP_SUBTRACAO    shift and go to state 71
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+
+state 83
+
+    (57) atribuicao -> ID ATRIBUICAO expressao error .
+
+    END             reduce using rule 57 (atribuicao -> ID ATRIBUICAO expressao error .)
+    PONTO_VIRGULA   reduce using rule 57 (atribuicao -> ID ATRIBUICAO expressao error .)
+    ELSE            reduce using rule 57 (atribuicao -> ID ATRIBUICAO expressao error .)
+
+
+state 84
+
+    (23) condicional -> IF expressao THEN comando .
+    (24) condicional -> IF expressao THEN comando . ELSE comando
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    END             reduce using rule 23 (condicional -> IF expressao THEN comando .)
+    PONTO_VIRGULA   reduce using rule 23 (condicional -> IF expressao THEN comando .)
+    ELSE            shift and go to state 105
+
+  ! ELSE            [ reduce using rule 23 (condicional -> IF expressao THEN comando .) ]
+
+
+state 85
+
+    (30) expressao -> expressao AND expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    THEN            reduce using rule 30 (expressao -> expressao AND expressao .)
+    error           reduce using rule 30 (expressao -> expressao AND expressao .)
+    AND             reduce using rule 30 (expressao -> expressao AND expressao .)
+    OR              reduce using rule 30 (expressao -> expressao AND expressao .)
+    DO              reduce using rule 30 (expressao -> expressao AND expressao .)
+    END             reduce using rule 30 (expressao -> expressao AND expressao .)
+    PONTO_VIRGULA   reduce using rule 30 (expressao -> expressao AND expressao .)
+    ELSE            reduce using rule 30 (expressao -> expressao AND expressao .)
+    PARENTESE_DIR   reduce using rule 30 (expressao -> expressao AND expressao .)
+    VIRGULA         reduce using rule 30 (expressao -> expressao AND expressao .)
+    OP_RELACIONAL   shift and go to state 69
+    OP_SOMA         shift and go to state 70
+    OP_SUBTRACAO    shift and go to state 71
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+  ! OP_RELACIONAL   [ reduce using rule 30 (expressao -> expressao AND expressao .) ]
+  ! OP_SOMA         [ reduce using rule 30 (expressao -> expressao AND expressao .) ]
+  ! OP_SUBTRACAO    [ reduce using rule 30 (expressao -> expressao AND expressao .) ]
+  ! OP_MULTIPLICA   [ reduce using rule 30 (expressao -> expressao AND expressao .) ]
+  ! DIV             [ reduce using rule 30 (expressao -> expressao AND expressao .) ]
+  ! AND             [ shift and go to state 67 ]
+  ! OR              [ shift and go to state 68 ]
+
+
+state 86
+
+    (50) expressao -> expressao AND error .
+
+    THEN            reduce using rule 50 (expressao -> expressao AND error .)
+    error           reduce using rule 50 (expressao -> expressao AND error .)
+    AND             reduce using rule 50 (expressao -> expressao AND error .)
+    OR              reduce using rule 50 (expressao -> expressao AND error .)
+    OP_RELACIONAL   reduce using rule 50 (expressao -> expressao AND error .)
+    OP_SOMA         reduce using rule 50 (expressao -> expressao AND error .)
+    OP_SUBTRACAO    reduce using rule 50 (expressao -> expressao AND error .)
+    OP_MULTIPLICA   reduce using rule 50 (expressao -> expressao AND error .)
+    DIV             reduce using rule 50 (expressao -> expressao AND error .)
+    DO              reduce using rule 50 (expressao -> expressao AND error .)
+    END             reduce using rule 50 (expressao -> expressao AND error .)
+    PONTO_VIRGULA   reduce using rule 50 (expressao -> expressao AND error .)
+    ELSE            reduce using rule 50 (expressao -> expressao AND error .)
+    PARENTESE_DIR   reduce using rule 50 (expressao -> expressao AND error .)
+    VIRGULA         reduce using rule 50 (expressao -> expressao AND error .)
+
+
+state 87
+
+    (31) expressao -> expressao OR expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    THEN            reduce using rule 31 (expressao -> expressao OR expressao .)
+    error           reduce using rule 31 (expressao -> expressao OR expressao .)
+    OR              reduce using rule 31 (expressao -> expressao OR expressao .)
+    DO              reduce using rule 31 (expressao -> expressao OR expressao .)
+    END             reduce using rule 31 (expressao -> expressao OR expressao .)
+    PONTO_VIRGULA   reduce using rule 31 (expressao -> expressao OR expressao .)
+    ELSE            reduce using rule 31 (expressao -> expressao OR expressao .)
+    PARENTESE_DIR   reduce using rule 31 (expressao -> expressao OR expressao .)
+    VIRGULA         reduce using rule 31 (expressao -> expressao OR expressao .)
+    AND             shift and go to state 67
+    OP_RELACIONAL   shift and go to state 69
+    OP_SOMA         shift and go to state 70
+    OP_SUBTRACAO    shift and go to state 71
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+  ! AND             [ reduce using rule 31 (expressao -> expressao OR expressao .) ]
+  ! OP_RELACIONAL   [ reduce using rule 31 (expressao -> expressao OR expressao .) ]
+  ! OP_SOMA         [ reduce using rule 31 (expressao -> expressao OR expressao .) ]
+  ! OP_SUBTRACAO    [ reduce using rule 31 (expressao -> expressao OR expressao .) ]
+  ! OP_MULTIPLICA   [ reduce using rule 31 (expressao -> expressao OR expressao .) ]
+  ! DIV             [ reduce using rule 31 (expressao -> expressao OR expressao .) ]
+  ! OR              [ shift and go to state 68 ]
+
+
+state 88
+
+    (51) expressao -> expressao OR error .
+
+    THEN            reduce using rule 51 (expressao -> expressao OR error .)
+    error           reduce using rule 51 (expressao -> expressao OR error .)
+    AND             reduce using rule 51 (expressao -> expressao OR error .)
+    OR              reduce using rule 51 (expressao -> expressao OR error .)
+    OP_RELACIONAL   reduce using rule 51 (expressao -> expressao OR error .)
+    OP_SOMA         reduce using rule 51 (expressao -> expressao OR error .)
+    OP_SUBTRACAO    reduce using rule 51 (expressao -> expressao OR error .)
+    OP_MULTIPLICA   reduce using rule 51 (expressao -> expressao OR error .)
+    DIV             reduce using rule 51 (expressao -> expressao OR error .)
+    DO              reduce using rule 51 (expressao -> expressao OR error .)
+    END             reduce using rule 51 (expressao -> expressao OR error .)
+    PONTO_VIRGULA   reduce using rule 51 (expressao -> expressao OR error .)
+    ELSE            reduce using rule 51 (expressao -> expressao OR error .)
+    PARENTESE_DIR   reduce using rule 51 (expressao -> expressao OR error .)
+    VIRGULA         reduce using rule 51 (expressao -> expressao OR error .)
+
+
+state 89
+
+    (32) expressao -> expressao OP_RELACIONAL expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    THEN            reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .)
+    error           reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .)
+    AND             reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .)
+    OR              reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .)
+    DO              reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .)
+    END             reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .)
+    PONTO_VIRGULA   reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .)
+    ELSE            reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .)
+    PARENTESE_DIR   reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .)
+    VIRGULA         reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .)
+    OP_SOMA         shift and go to state 70
+    OP_SUBTRACAO    shift and go to state 71
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+    OP_RELACIONAL   shift and go to state 69
+
+  ! OP_RELACIONAL   [ reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .) ]
+  ! OP_SOMA         [ reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .) ]
+  ! OP_SUBTRACAO    [ reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .) ]
+  ! OP_MULTIPLICA   [ reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .) ]
+  ! DIV             [ reduce using rule 32 (expressao -> expressao OP_RELACIONAL expressao .) ]
+  ! AND             [ shift and go to state 67 ]
+  ! OR              [ shift and go to state 68 ]
+
+
+state 90
+
+    (52) expressao -> expressao OP_RELACIONAL error .
+
+    THEN            reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    error           reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    AND             reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    OR              reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    OP_RELACIONAL   reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    OP_SOMA         reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    OP_SUBTRACAO    reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    OP_MULTIPLICA   reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    DIV             reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    DO              reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    END             reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    PONTO_VIRGULA   reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    ELSE            reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    PARENTESE_DIR   reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+    VIRGULA         reduce using rule 52 (expressao -> expressao OP_RELACIONAL error .)
+
+
+state 91
+
+    (33) expressao -> expressao OP_SOMA expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    THEN            reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    error           reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    AND             reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    OR              reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    OP_RELACIONAL   reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    OP_SOMA         reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    OP_SUBTRACAO    reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    DO              reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    END             reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    PONTO_VIRGULA   reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    ELSE            reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    PARENTESE_DIR   reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    VIRGULA         reduce using rule 33 (expressao -> expressao OP_SOMA expressao .)
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+  ! OP_MULTIPLICA   [ reduce using rule 33 (expressao -> expressao OP_SOMA expressao .) ]
+  ! DIV             [ reduce using rule 33 (expressao -> expressao OP_SOMA expressao .) ]
+  ! AND             [ shift and go to state 67 ]
+  ! OR              [ shift and go to state 68 ]
+  ! OP_RELACIONAL   [ shift and go to state 69 ]
+  ! OP_SOMA         [ shift and go to state 70 ]
+  ! OP_SUBTRACAO    [ shift and go to state 71 ]
+
+
+state 92
+
+    (53) expressao -> expressao OP_SOMA error .
+
+    THEN            reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    error           reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    AND             reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    OR              reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    OP_RELACIONAL   reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    OP_SOMA         reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    OP_SUBTRACAO    reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    OP_MULTIPLICA   reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    DIV             reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    DO              reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    END             reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    PONTO_VIRGULA   reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    ELSE            reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    PARENTESE_DIR   reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+    VIRGULA         reduce using rule 53 (expressao -> expressao OP_SOMA error .)
+
+
+state 93
+
+    (34) expressao -> expressao OP_SUBTRACAO expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    THEN            reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    error           reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    AND             reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    OR              reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    OP_RELACIONAL   reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    OP_SOMA         reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    OP_SUBTRACAO    reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    DO              reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    END             reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    PONTO_VIRGULA   reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    ELSE            reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    PARENTESE_DIR   reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    VIRGULA         reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .)
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+  ! OP_MULTIPLICA   [ reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .) ]
+  ! DIV             [ reduce using rule 34 (expressao -> expressao OP_SUBTRACAO expressao .) ]
+  ! AND             [ shift and go to state 67 ]
+  ! OR              [ shift and go to state 68 ]
+  ! OP_RELACIONAL   [ shift and go to state 69 ]
+  ! OP_SOMA         [ shift and go to state 70 ]
+  ! OP_SUBTRACAO    [ shift and go to state 71 ]
+
+
+state 94
+
+    (54) expressao -> expressao OP_SUBTRACAO error .
+
+    THEN            reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    error           reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    AND             reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    OR              reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    OP_RELACIONAL   reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    OP_SOMA         reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    OP_SUBTRACAO    reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    OP_MULTIPLICA   reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    DIV             reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    DO              reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    END             reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    PONTO_VIRGULA   reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    ELSE            reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    PARENTESE_DIR   reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+    VIRGULA         reduce using rule 54 (expressao -> expressao OP_SUBTRACAO error .)
+
+
+state 95
+
+    (35) expressao -> expressao OP_MULTIPLICA expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    THEN            reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    error           reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    AND             reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    OR              reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    OP_RELACIONAL   reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    OP_SOMA         reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    OP_SUBTRACAO    reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    OP_MULTIPLICA   reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    DIV             reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    DO              reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    END             reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    PONTO_VIRGULA   reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    ELSE            reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    PARENTESE_DIR   reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+    VIRGULA         reduce using rule 35 (expressao -> expressao OP_MULTIPLICA expressao .)
+
+  ! AND             [ shift and go to state 67 ]
+  ! OR              [ shift and go to state 68 ]
+  ! OP_RELACIONAL   [ shift and go to state 69 ]
+  ! OP_SOMA         [ shift and go to state 70 ]
+  ! OP_SUBTRACAO    [ shift and go to state 71 ]
+  ! OP_MULTIPLICA   [ shift and go to state 72 ]
+  ! DIV             [ shift and go to state 73 ]
+
+
+state 96
+
+    (55) expressao -> expressao OP_MULTIPLICA error .
+
+    THEN            reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    error           reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    AND             reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    OR              reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    OP_RELACIONAL   reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    OP_SOMA         reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    OP_SUBTRACAO    reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    OP_MULTIPLICA   reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    DIV             reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    DO              reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    END             reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    PONTO_VIRGULA   reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    ELSE            reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    PARENTESE_DIR   reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+    VIRGULA         reduce using rule 55 (expressao -> expressao OP_MULTIPLICA error .)
+
+
+state 97
+
+    (36) expressao -> expressao DIV expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    THEN            reduce using rule 36 (expressao -> expressao DIV expressao .)
+    error           reduce using rule 36 (expressao -> expressao DIV expressao .)
+    AND             reduce using rule 36 (expressao -> expressao DIV expressao .)
+    OR              reduce using rule 36 (expressao -> expressao DIV expressao .)
+    OP_RELACIONAL   reduce using rule 36 (expressao -> expressao DIV expressao .)
+    OP_SOMA         reduce using rule 36 (expressao -> expressao DIV expressao .)
+    OP_SUBTRACAO    reduce using rule 36 (expressao -> expressao DIV expressao .)
+    OP_MULTIPLICA   reduce using rule 36 (expressao -> expressao DIV expressao .)
+    DIV             reduce using rule 36 (expressao -> expressao DIV expressao .)
+    DO              reduce using rule 36 (expressao -> expressao DIV expressao .)
+    END             reduce using rule 36 (expressao -> expressao DIV expressao .)
+    PONTO_VIRGULA   reduce using rule 36 (expressao -> expressao DIV expressao .)
+    ELSE            reduce using rule 36 (expressao -> expressao DIV expressao .)
+    PARENTESE_DIR   reduce using rule 36 (expressao -> expressao DIV expressao .)
+    VIRGULA         reduce using rule 36 (expressao -> expressao DIV expressao .)
+
+  ! AND             [ shift and go to state 67 ]
+  ! OR              [ shift and go to state 68 ]
+  ! OP_RELACIONAL   [ shift and go to state 69 ]
+  ! OP_SOMA         [ shift and go to state 70 ]
+  ! OP_SUBTRACAO    [ shift and go to state 71 ]
+  ! OP_MULTIPLICA   [ shift and go to state 72 ]
+  ! DIV             [ shift and go to state 73 ]
+
+
+state 98
+
+    (56) expressao -> expressao DIV error .
+
+    THEN            reduce using rule 56 (expressao -> expressao DIV error .)
+    error           reduce using rule 56 (expressao -> expressao DIV error .)
+    AND             reduce using rule 56 (expressao -> expressao DIV error .)
+    OR              reduce using rule 56 (expressao -> expressao DIV error .)
+    OP_RELACIONAL   reduce using rule 56 (expressao -> expressao DIV error .)
+    OP_SOMA         reduce using rule 56 (expressao -> expressao DIV error .)
+    OP_SUBTRACAO    reduce using rule 56 (expressao -> expressao DIV error .)
+    OP_MULTIPLICA   reduce using rule 56 (expressao -> expressao DIV error .)
+    DIV             reduce using rule 56 (expressao -> expressao DIV error .)
+    DO              reduce using rule 56 (expressao -> expressao DIV error .)
+    END             reduce using rule 56 (expressao -> expressao DIV error .)
+    PONTO_VIRGULA   reduce using rule 56 (expressao -> expressao DIV error .)
+    ELSE            reduce using rule 56 (expressao -> expressao DIV error .)
+    PARENTESE_DIR   reduce using rule 56 (expressao -> expressao DIV error .)
+    VIRGULA         reduce using rule 56 (expressao -> expressao DIV error .)
+
+
+state 99
+
+    (39) expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .
+
+    THEN            reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    error           reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    AND             reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    OR              reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    OP_RELACIONAL   reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    OP_SOMA         reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    OP_SUBTRACAO    reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    OP_MULTIPLICA   reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    DIV             reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    DO              reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    END             reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    PONTO_VIRGULA   reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    ELSE            reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    PARENTESE_DIR   reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+    VIRGULA         reduce using rule 39 (expressao -> PARENTESE_ESQ expressao PARENTESE_DIR .)
+
+
+state 100
+
+    (25) repeticao -> WHILE expressao DO comando .
+
+    END             reduce using rule 25 (repeticao -> WHILE expressao DO comando .)
+    PONTO_VIRGULA   reduce using rule 25 (repeticao -> WHILE expressao DO comando .)
+    ELSE            reduce using rule 25 (repeticao -> WHILE expressao DO comando .)
+
+
+state 101
+
+    (26) leitura -> READ PARENTESE_ESQ lista_identificadores PARENTESE_DIR .
+
+    END             reduce using rule 26 (leitura -> READ PARENTESE_ESQ lista_identificadores PARENTESE_DIR .)
+    PONTO_VIRGULA   reduce using rule 26 (leitura -> READ PARENTESE_ESQ lista_identificadores PARENTESE_DIR .)
+    ELSE            reduce using rule 26 (leitura -> READ PARENTESE_ESQ lista_identificadores PARENTESE_DIR .)
+
+
+state 102
+
+    (61) leitura -> READ PARENTESE_ESQ error PARENTESE_DIR .
+
+    END             reduce using rule 61 (leitura -> READ PARENTESE_ESQ error PARENTESE_DIR .)
+    PONTO_VIRGULA   reduce using rule 61 (leitura -> READ PARENTESE_ESQ error PARENTESE_DIR .)
+    ELSE            reduce using rule 61 (leitura -> READ PARENTESE_ESQ error PARENTESE_DIR .)
+
+
+state 103
+
+    (27) escrita -> WRITE PARENTESE_ESQ lista_expressoes PARENTESE_DIR .
+
+    END             reduce using rule 27 (escrita -> WRITE PARENTESE_ESQ lista_expressoes PARENTESE_DIR .)
+    PONTO_VIRGULA   reduce using rule 27 (escrita -> WRITE PARENTESE_ESQ lista_expressoes PARENTESE_DIR .)
+    ELSE            reduce using rule 27 (escrita -> WRITE PARENTESE_ESQ lista_expressoes PARENTESE_DIR .)
+
+
+state 104
+
+    (28) lista_expressoes -> lista_expressoes VIRGULA . expressao
+    (62) lista_expressoes -> lista_expressoes VIRGULA . error
+    (30) expressao -> . expressao AND expressao
+    (31) expressao -> . expressao OR expressao
+    (32) expressao -> . expressao OP_RELACIONAL expressao
+    (33) expressao -> . expressao OP_SOMA expressao
+    (34) expressao -> . expressao OP_SUBTRACAO expressao
+    (35) expressao -> . expressao OP_MULTIPLICA expressao
+    (36) expressao -> . expressao DIV expressao
+    (37) expressao -> . NOT expressao
+    (38) expressao -> . OP_SUBTRACAO expressao
+    (39) expressao -> . PARENTESE_ESQ expressao PARENTESE_DIR
+    (40) expressao -> . ID
+    (41) expressao -> . NUMERO
+    (42) expressao -> . TRUE
+    (43) expressao -> . FALSE
+    (50) expressao -> . expressao AND error
+    (51) expressao -> . expressao OR error
+    (52) expressao -> . expressao OP_RELACIONAL error
+    (53) expressao -> . expressao OP_SOMA error
+    (54) expressao -> . expressao OP_SUBTRACAO error
+    (55) expressao -> . expressao OP_MULTIPLICA error
+    (56) expressao -> . expressao DIV error
+
+    error           shift and go to state 107
+    NOT             shift and go to state 47
+    OP_SUBTRACAO    shift and go to state 46
+    PARENTESE_ESQ   shift and go to state 48
+    ID              shift and go to state 49
+    NUMERO          shift and go to state 50
+    TRUE            shift and go to state 51
+    FALSE           shift and go to state 52
+
+    expressao                      shift and go to state 106
+
+state 105
+
+    (24) condicional -> IF expressao THEN comando ELSE . comando
+    (16) comando -> . atribuicao
+    (17) comando -> . condicional
+    (18) comando -> . repeticao
+    (19) comando -> . leitura
+    (20) comando -> . escrita
+    (21) comando -> . comando_composto
+    (22) atribuicao -> . ID ATRIBUICAO expressao
+    (57) atribuicao -> . ID ATRIBUICAO expressao error
+    (23) condicional -> . IF expressao THEN comando
+    (24) condicional -> . IF expressao THEN comando ELSE comando
+    (59) condicional -> . IF expressao error
+    (25) repeticao -> . WHILE expressao DO comando
+    (60) repeticao -> . WHILE expressao error
+    (26) leitura -> . READ PARENTESE_ESQ lista_identificadores PARENTESE_DIR
+    (61) leitura -> . READ PARENTESE_ESQ error PARENTESE_DIR
+    (27) escrita -> . WRITE PARENTESE_ESQ lista_expressoes PARENTESE_DIR
+    (12) comando_composto -> . BEGIN lista_comandos END
+
+    ID              shift and go to state 31
+    IF              shift and go to state 32
+    WHILE           shift and go to state 33
+    READ            shift and go to state 34
+    WRITE           shift and go to state 35
+    BEGIN           shift and go to state 11
+
+    comando                        shift and go to state 108
+    atribuicao                     shift and go to state 25
+    condicional                    shift and go to state 26
+    repeticao                      shift and go to state 27
+    leitura                        shift and go to state 28
+    escrita                        shift and go to state 29
+    comando_composto               shift and go to state 30
+
+state 106
+
+    (28) lista_expressoes -> lista_expressoes VIRGULA expressao .
+    (30) expressao -> expressao . AND expressao
+    (31) expressao -> expressao . OR expressao
+    (32) expressao -> expressao . OP_RELACIONAL expressao
+    (33) expressao -> expressao . OP_SOMA expressao
+    (34) expressao -> expressao . OP_SUBTRACAO expressao
+    (35) expressao -> expressao . OP_MULTIPLICA expressao
+    (36) expressao -> expressao . DIV expressao
+    (50) expressao -> expressao . AND error
+    (51) expressao -> expressao . OR error
+    (52) expressao -> expressao . OP_RELACIONAL error
+    (53) expressao -> expressao . OP_SOMA error
+    (54) expressao -> expressao . OP_SUBTRACAO error
+    (55) expressao -> expressao . OP_MULTIPLICA error
+    (56) expressao -> expressao . DIV error
+
+    PARENTESE_DIR   reduce using rule 28 (lista_expressoes -> lista_expressoes VIRGULA expressao .)
+    VIRGULA         reduce using rule 28 (lista_expressoes -> lista_expressoes VIRGULA expressao .)
+    AND             shift and go to state 67
+    OR              shift and go to state 68
+    OP_RELACIONAL   shift and go to state 69
+    OP_SOMA         shift and go to state 70
+    OP_SUBTRACAO    shift and go to state 71
+    OP_MULTIPLICA   shift and go to state 72
+    DIV             shift and go to state 73
+
+
+state 107
+
+    (62) lista_expressoes -> lista_expressoes VIRGULA error .
+
+    PARENTESE_DIR   reduce using rule 62 (lista_expressoes -> lista_expressoes VIRGULA error .)
+    VIRGULA         reduce using rule 62 (lista_expressoes -> lista_expressoes VIRGULA error .)
+
+
+state 108
+
+    (24) condicional -> IF expressao THEN comando ELSE comando .
+
+    END             reduce using rule 24 (condicional -> IF expressao THEN comando ELSE comando .)
+    PONTO_VIRGULA   reduce using rule 24 (condicional -> IF expressao THEN comando ELSE comando .)
+    ELSE            reduce using rule 24 (condicional -> IF expressao THEN comando ELSE comando .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 84 resolved as shift
